@@ -12,7 +12,8 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    {/* Use Vite's base for the router so routes resolve under the project path on GitHub Pages */}
+    <BrowserRouter basename={(import.meta as any).env.BASE_URL}>
       <App />
     </BrowserRouter>
   </React.StrictMode>
