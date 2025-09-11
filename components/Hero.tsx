@@ -1,10 +1,13 @@
 import React from 'react';
 import Ofertas from './Ofertas';
+import { Link } from 'react-router-dom';
+
+const base = (import.meta as any).env.BASE_URL || '/';
 
 const contactInfo = [
-    { icon: '/ico-mail.webp', text: 'ventas@congen.com.pe' },
-    { icon: '/ico-phone.webp', text: '(+51) 914 109 040' },
-    { icon: '/ico-point.webp', text: 'Urb. Ricardo Palma, Mz F Lt 14, SJL' },
+    { icon: `${base}ico-mail.webp`, text: 'ventas@congen.com.pe' },
+    { icon: `${base}ico-phone.webp`, text: '(+51) 914 109 040' },
+    { icon: `${base}ico-point.webp`, text: 'Urb. Ricardo Palma, Mz F Lt 14, SJL' },
 ];
 
 const Hero: React.FC = () => {
@@ -24,7 +27,8 @@ const Hero: React.FC = () => {
     return (
         <section 
             id="home"
-            className="relative w-full bg-cover bg-center bg-[url('/background-home.webp')]"
+            className="relative w-full bg-cover bg-center"
+            style={{ backgroundImage: `url(${base}background-home.webp)` }}
         >
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
@@ -46,10 +50,10 @@ const Hero: React.FC = () => {
 
                         {/* Bottom Actions Block */}
                         <div className="w-full flex flex-col items-center md:flex-row md:items-start md:justify-between gap-8">
-                                <a href="/servicios" className="order-1 md:order-1 -mt-4 md:mt-0 flex items-center justify-center gap-3 w-36 h-9 border border-white rounded-md bg-black/30 backdrop-blur-sm transition-colors hover:bg-black/60 md:relative md:left-11" aria-label="Ir a Servicios">
+                                <Link to="/servicios" className="order-1 md:order-1 -mt-4 md:mt-0 flex items-center justify-center gap-3 w-36 h-9 border border-white rounded-md bg-black/30 backdrop-blur-sm transition-colors hover:bg-black/60 md:relative md:left-11" aria-label="Ir a Servicios">
                                     <span className="font-medium text-sm">Saber más</span>
                                     <div className="w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-l-[8px] border-l-white" aria-hidden="true"></div>
-                                </a>
+                                </Link>
                             
                             <div className="order-2 md:order-2 relative bottom-[8px] md:top-auto md:bottom-[88px] lg:bottom-[120px]">
                                 <Ofertas />
@@ -94,16 +98,16 @@ const Hero: React.FC = () => {
                         aria-label="Saber más sobre nosotros"
                         role="button"
                     >
-                        <img 
-                            decoding="async" 
-                            src="/ico-arrow.svg" 
+                            <img 
+                                decoding="async" 
+                                src={`${(import.meta as any).env.BASE_URL || '/'}ico-arrow.svg`} 
                             alt="" 
                             className="w-8 h-auto opacity-80 group-hover:opacity-100 transition-opacity"
                         />
                         <span className="text-white font-semibold text-sm opacity-80 group-hover:opacity-100 transition-opacity">Saber más sobre nosotros</span>
-                        <img 
-                            decoding="async" 
-                            src="/ico-arrow.svg" 
+                            <img 
+                                decoding="async" 
+                                src={`${(import.meta as any).env.BASE_URL || '/'}ico-arrow.svg`} 
                             alt="" 
                             className="w-8 h-auto opacity-80 group-hover:opacity-100 transition-opacity"
                         />

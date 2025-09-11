@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
+const base = (import.meta as any).env.BASE_URL || '/';
+
 const navLinks = [
     { name: 'NOSOTROS', href: '#about', dropdown: false },
     { name: 'PRODUCTOS', href: '/productos', dropdown: true },
@@ -176,12 +178,12 @@ const Header: React.FC = () => {
                 <div id="menu-contenido" className="relative w-full h-[52px] flex flex-row items-center justify-center md:justify-start lg:justify-between px-0">
                     {/* Desktop Logo */}
                     <Link to="/" className="hidden md:block w-[192px] h-[21px] cursor-pointer relative bottom-[29px] lg:bottom-8">
-                        <img src="/logo3.svg" alt="Logo de la Marca" />
+                        <img src={`${base}logo3.svg`} alt="Logo de la Marca" />
                     </Link>
 
                     {/* Mobile Symbol */}
                     <Link to="/" className="md:hidden absolute left-8 top-1/2 -translate-y-1/2 w-auto h-auto cursor-pointer">
-                        <img src="/logo-simbolo.svg" alt="Logo Simbolo" className="h-10" />
+                        <img src={`${base}logo-simbolo.svg`} alt="Logo Simbolo" className="h-10" />
                     </Link>
 
                     {/* Desktop Nav Group */}
@@ -202,12 +204,12 @@ const Header: React.FC = () => {
                                     {link.href.startsWith('/') ? (
                                         <Link to={link.href} className="flex items-center gap-1 text-white text-xs font-bold [text-shadow:0px_0px_8px_rgba(0,0,0,0.77)] transition-transform hover:scale-110">
                                             {link.name}
-                                                {link.dropdown && <img src="/flecha1.svg" alt="arrow" className="w-2 h-2 invert rotate-180" />}
+                                                {link.dropdown && <img src={`${base}flecha1.svg`} alt="arrow" className="w-2 h-2 invert rotate-180" />}
                                         </Link>
                                     ) : (
                                             <a href={link.href} onClick={(e) => scrollTo(e, link.href)} className="flex items-center gap-1 text-white text-xs font-bold [text-shadow:0px_0px_8px_rgba(0,0,0,0.77)] transition-transform hover:scale-110">
                                                 {link.name}
-                                                {link.dropdown && <img src="/flecha1.svg" alt="arrow" className="w-2 h-2 invert rotate-180" />}
+                                                {link.dropdown && <img src={`${base}flecha1.svg`} alt="arrow" className="w-2 h-2 invert rotate-180" />}
                                             </a>
                                     )}
                                      {link.dropdown && link.name === 'PRODUCTOS' && (
@@ -233,7 +235,7 @@ const Header: React.FC = () => {
                         aria-expanded={isMobileMenuOpen}
                         aria-controls="box-productos-ultimate-m"
                     >
-                        <img src="/ico-menu.svg" alt="Botón de Menú" className="w-6 h-6"/>
+                        <img src={`${base}ico-menu.svg`} alt="Botón de Menú" className="w-6 h-6"/>
                     </button>
                 </div>
 

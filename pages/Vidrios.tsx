@@ -6,6 +6,9 @@ import UProyectos from '../components/UProyectos';
 import ProductCarousel from '../components/ProductCarousel';
 import FloatingWhatsApp from '../components/FloatingWhatsApp';
 
+// Vite base for assets when hosted to a subpath (ex: /congen001/)
+const base = (import.meta as any).env.BASE_URL || '/';
+
 // --- Constants ---
 const services = [
     "Carpintería de Vidrio y Aluminio", "Tabiquería y Enchapado", "Alquiler y Venta de Andamios",
@@ -15,28 +18,28 @@ const products = ["Vidrios", "Mobiliarios", "Accesorios", "Tabiquería y Enchapa
 
 // Products data for the carousel (matches /productos)
 const productItems = [
-    { img: '/p/w02img1.webp', title: 'SISTEMA NOVA', subtitle: 'Vidrios' },
-    { img: '/p/w02img2.webp', title: 'SERIE 20', subtitle: 'Vidrios' },
-    { img: '/p/w02img3.webp', title: 'SERIE 25', subtitle: 'Vidrios' },
-    { img: '/p/w02img4.webp', title: 'ACUSTICAS/ANTI RUIDOS', subtitle: 'Vidrios' },
-    { img: '/p/w02img6.webp', title: 'PVC', subtitle: 'Vidrios' },
-    { img: '/p/w02img7.webp', title: 'SLIDE SYSTEM', subtitle: 'Vidrios' },
-    { img: '/p/w02img8.webp', title: 'PUERTAS DE DUCHA', subtitle: 'Vidrios' },
-    { img: '/p/w02img9.webp', title: 'ESPEJOS', subtitle: 'Mobiliario' },
-    { img: '/p/w02img10.webp', title: 'MÓDULOS', subtitle: 'Mobiliario' },
-    { img: '/p/w02img11.webp', title: 'MESAS', subtitle: 'Mobiliario' },
-    { img: '/p/w02img12.webp', title: 'REPISAS', subtitle: 'Mobiliario' },
-    { img: '/p/w02img13.webp', title: 'PIZARRAS', subtitle: 'Mobiliario' },
-    { img: '/p/w02img14.webp', title: 'BRAZOS HIDRÁULICOS', subtitle: 'Accesorios' },
-    { img: '/p/w02img15.webp', title: 'TIRADORES', subtitle: 'Accesorios' },
-    { img: '/p/w02img16.webp', title: 'CERRADURAS', subtitle: 'Accesorios' },
-    { img: '/p/w02img17.webp', title: 'FRENOS HIDRÁULICOS', subtitle: 'Accesorios' },
-    { img: '/p/w02img18.webp', title: 'VINILOS', subtitle: 'Accesorios' },
-    { img: '/p/w02img19.webp', title: 'VENTOSAS', subtitle: 'Accesorios' },
-    { img: '/p/w02img20.webp', title: 'DRYWALL', subtitle: 'Tabiquería y Enchapados' },
-    { img: '/p/w02img21.webp', title: 'ENCHAPADOS', subtitle: 'Tabiquería y Enchapados' },
-    { img: '/p/w02img22.webp', title: 'LADRILLO', subtitle: 'Tabiquería y Enchapados' },
-    { img: '/p/w02img23.webp', title: 'ANDAMIOS ACROW', subtitle: 'Andamios' },
+    { img: `${base}p/w02img1.webp`, title: 'SISTEMA NOVA', subtitle: 'Vidrios' },
+    { img: `${base}p/w02img2.webp`, title: 'SERIE 20', subtitle: 'Vidrios' },
+    { img: `${base}p/w02img3.webp`, title: 'SERIE 25', subtitle: 'Vidrios' },
+    { img: `${base}p/w02img4.webp`, title: 'ACUSTICAS/ANTI RUIDOS', subtitle: 'Vidrios' },
+    { img: `${base}p/w02img6.webp`, title: 'PVC', subtitle: 'Vidrios' },
+    { img: `${base}p/w02img7.webp`, title: 'SLIDE SYSTEM', subtitle: 'Vidrios' },
+    { img: `${base}p/w02img8.webp`, title: 'PUERTAS DE DUCHA', subtitle: 'Vidrios' },
+    { img: `${base}p/w02img9.webp`, title: 'ESPEJOS', subtitle: 'Mobiliario' },
+    { img: `${base}p/w02img10.webp`, title: 'MÓDULOS', subtitle: 'Mobiliario' },
+    { img: `${base}p/w02img11.webp`, title: 'MESAS', subtitle: 'Mobiliario' },
+    { img: `${base}p/w02img12.webp`, title: 'REPISAS', subtitle: 'Mobiliario' },
+    { img: `${base}p/w02img13.webp`, title: 'PIZARRAS', subtitle: 'Mobiliario' },
+    { img: `${base}p/w02img14.webp`, title: 'BRAZOS HIDRÁULICOS', subtitle: 'Accesorios' },
+    { img: `${base}p/w02img15.webp`, title: 'TIRADORES', subtitle: 'Accesorios' },
+    { img: `${base}p/w02img16.webp`, title: 'CERRADURAS', subtitle: 'Accesorios' },
+    { img: `${base}p/w02img17.webp`, title: 'FRENOS HIDRÁULICOS', subtitle: 'Accesorios' },
+    { img: `${base}p/w02img18.webp`, title: 'VINILOS', subtitle: 'Accesorios' },
+    { img: `${base}p/w02img19.webp`, title: 'VENTOSAS', subtitle: 'Accesorios' },
+    { img: `${base}p/w02img20.webp`, title: 'DRYWALL', subtitle: 'Tabiquería y Enchapados' },
+    { img: `${base}p/w02img21.webp`, title: 'ENCHAPADOS', subtitle: 'Tabiquería y Enchapados' },
+    { img: `${base}p/w02img22.webp`, title: 'LADRILLO', subtitle: 'Tabiquería y Enchapados' },
+    { img: `${base}p/w02img23.webp`, title: 'ANDAMIOS ACROW', subtitle: 'Andamios' },
 ];
 
 
@@ -193,9 +196,9 @@ const Header: React.FC = () => {
     return (
         <div className="absolute top-0 left-0 right-0 z-10 p-4">
             <div className="container mx-auto hidden md:flex flex-col md:flex-row justify-center items-center gap-2 md:gap-6 text-white text-shadow-sm scale-110">
-                <ContactItem icon="https://www.congen.com.pe/public/mail.svg" text="ventas@congen.com.pe" alt="Email icon" />
-                <ContactItem icon="https://www.congen.com.pe/public/phone.svg" text="(+51) 914 109 040" alt="Phone icon" />
-                <ContactItem icon="https://www.congen.com.pe/public/point.svg" text="Urb. Ricardo Palma, Mz F Lt 14, SJL" alt="Location icon" />
+                <ContactItem icon={`${base}mail.svg`} text="ventas@congen.com.pe" alt="Email icon" />
+                <ContactItem icon={`${base}phone.svg`} text="(+51) 914 109 040" alt="Phone icon" />
+                <ContactItem icon={`${base}point.svg`} text="Urb. Ricardo Palma, Mz F Lt 14, SJL" alt="Location icon" />
             </div>
         </div>
     );
@@ -205,13 +208,13 @@ const Hero: React.FC = () => {
     const textShadow = { textShadow: '-1px 2px 2px rgba(0,0,0,0.5), 0px 0px 16px rgba(0,0,0,0.77)' };
 
     return (
-        <section className="relative w-full h-auto bg-[url('https://www.congen.com.pe/public/l1-bg1.webp')] bg-cover bg-center flex flex-col items-center pt-0 md:pt-16 pb-20 md:pb-[120px] px-4">
+    <section className="relative w-full h-auto bg-cover bg-center flex flex-col items-center pt-0 md:pt-16 pb-20 md:pb-[120px] px-4" style={{ backgroundImage: `url(${base}l1-bg1.webp)` }}>
             
             <div className="w-full max-w-[744px] flex flex-col md:flex-row justify-center items-center md:items-end gap-8 mt-0 md:mt-8">
                 {/* Left Side: Title and Image */}
                 <div className="flex flex-col items-center md:items-start gap-4">
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                        <img src="https://www.congen.com.pe/public/logo3.svg" alt="Congen Logo" className="w-[312px] h-auto mb-2 mt-2 md:-ml-8 lg:w-[172px] lg:-ml-6" />
+                        <img src={`${base}logo3.svg`} alt="Congen Logo" className="w-[312px] h-auto mb-2 mt-2 md:-ml-8 lg:w-[172px] lg:-ml-6" />
                         <span className="text-white text-sm" style={{textShadow: '0 0 8px black'}}>Ofrecemos Servicios de</span>
                         <h1 className="text-white text-3xl font-extrabold leading-tight" style={textShadow}>
                             CARPINTERÍA DE VIDRIOS
@@ -221,7 +224,7 @@ const Hero: React.FC = () => {
                         <span className="text-white text-base" style={{textShadow: '0 0 8px black'}}>En Lima y Provincias</span>
                     </div>
                     <div className="w-full max-w-[320px] h-auto p-2 rounded-lg bg-[#0404048F] border-2 border-[#009899]">
-                        <img src="https://www.congen.com.pe/public/l1-principal.webp" alt="Carpintería de vidrios y aluminios" className="rounded-md w-full h-full object-cover" />
+                        <img src={`${base}l1-principal.webp`} alt="Carpintería de vidrios y aluminios" className="rounded-md w-full h-full object-cover" />
                     </div>
                 </div>
 
@@ -233,17 +236,17 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Mobile Contact Info */}
-            <div className="md:hidden mt-8 flex flex-col justify-center items-center gap-2 text-white">
+                <div className="md:hidden mt-8 flex flex-col justify-center items-center gap-2 text-white">
                 <div className="flex items-center gap-2">
-                    <img src="https://www.congen.com.pe/public/mail.svg" alt="Email icon" className="w-4 h-4" />
+                    <img src={`${base}mail.svg`} alt="Email icon" className="w-4 h-4" />
                     <span className="text-white text-xs" style={{textShadow: '0 0 4px black'}}>ventas@congen.com.pe</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <img src="https://www.congen.com.pe/public/phone.svg" alt="Phone icon" className="w-4 h-4" />
+                    <img src={`${base}phone.svg`} alt="Phone icon" className="w-4 h-4" />
                     <span className="text-white text-xs" style={{textShadow: '0 0 4px black' }}>(+51) 914 109 040</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <img src="https://www.congen.com.pe/public/point.svg" alt="Location icon" className="w-4 h-4" />
+                    <img src={`${base}point.svg`} alt="Location icon" className="w-4 h-4" />
                     <span className="text-white text-xs" style={{textShadow: '0 0 4px black' }}>Urb. Ricardo Palma, Mz F Lt 14, SJL</span>
                 </div>
             </div>
@@ -257,13 +260,13 @@ const Hero: React.FC = () => {
                 className="hidden md:flex items-center justify-center mt-[72px] cursor-pointer group"
             >
                 <div className="transition-transform duration-300 group-hover:translate-y-1">
-                    <img src="https://www.congen.com.pe/public/ico-arrow.svg" alt="Flecha hacia abajo" />
+                    <img src={`${base}ico-arrow.svg`} alt="Flecha hacia abajo" />
                 </div>
                 <span className="text-white text-base font-semibold mx-4 tracking-wide" style={{ textShadow: '0 0 8px black' }}>
                     Saber más sobre nosotros
                 </span>
                 <div className="transition-transform duration-300 group-hover:translate-y-1">
-                    <img src="https://www.congen.com.pe/public/ico-arrow.svg" alt="Flecha hacia abajo" />
+                    <img src={`${base}ico-arrow.svg`} alt="Flecha hacia abajo" />
                 </div>
             </button>
 
@@ -295,7 +298,7 @@ const ServicesSection: React.FC = () => {
                 <div className="h-0.5 bg-[#009899] mt-2 mb-4"></div>
                 <div className="flex flex-col md:flex-row items-center gap-6">
                     <div className="hidden md:block flex-shrink-0 w-[168px] h-[206px] p-1 bg-[#1F3D44] rounded-lg outline outline-2 outline-[#009899]">
-                        <img src="https://www.congen.com.pe/public/l1-portada.webp" alt="Servicios Congen" className="w-full h-full object-cover rounded" />
+                        <img src={`${base}l1-portada.webp`} alt="Servicios Congen" className="w-full h-full object-cover rounded" />
                     </div>
                     <p className="text-black text-sm text-left leading-relaxed">
                         En nuestra empresa nos especializamos en la <strong className="font-bold uppercase text-[#990021]">carpintería de vidrios y aluminios</strong>, ofreciendo soluciones personalizadas y de alta calidad para satisfacer las necesidades de nuestros clientes en <strong className="font-bold uppercase text-[#990021]">Lima y provincias</strong>. Entre nuestros productos destacados se encuentran el <strong className="font-bold uppercase text-[#990021]">Sistema Nova</strong>, diseñado para espacios modernos y minimalistas; las <strong className="font-bold uppercase text-[#990021]">Series 20 y 25</strong>, ideales por su resistencia y excelente capacidad de aislamiento térmico y acústico; opciones <strong className="font-bold uppercase text-[#990021]">Acústicas y Anti Ruido</strong>, perfectas para reducir el ruido exterior en ambientes urbanos; <strong className="font-bold uppercase text-[#990021]">estructuras en PVC</strong>, conocidas por su alto rendimiento en aislamiento térmico; el elegante y funcional <strong className="font-bold uppercase text-[#990021]">Slide System</strong>, pensado para optimizar espacios reducidos; y nuestras <strong className="font-bold uppercase text-[#990021]">Puertas de Ducha</strong>, fabricadas con vidrio templado de alta resistencia, ideales para baños modernos y sofisticados.
@@ -308,35 +311,35 @@ const ServicesSection: React.FC = () => {
                 <div className="w-full">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center">
                         <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                            <div className="h-[160px]"><img alt="Carpintería de Vidrio y Aluminio" className="w-full h-full object-cover" loading="lazy" src="/s/servicio1.webp"/></div>
+                            <div className="h-[160px]"><img alt="Carpintería de Vidrio y Aluminio" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio1.webp`} /></div>
                             <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Carpintería de Vidrio y Aluminio</span></div>
                         </div>
                         <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                            <div className="h-[160px]"><img alt="Tabiquería y Enchapado" className="w-full h-full object-cover" loading="lazy" src="/s/servicio2.webp"/></div>
+                            <div className="h-[160px]"><img alt="Tabiquería y Enchapado" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio2.webp`} /></div>
                             <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Tabiquería y Enchapado</span></div>
                         </div>
                         <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                            <div className="h-[160px]"><img alt="Alquiler y Venta de Andamios" className="w-full h-full object-cover" loading="lazy" src="/s/servicio3.webp"/></div>
+                            <div className="h-[160px]"><img alt="Alquiler y Venta de Andamios" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio3.webp`} /></div>
                             <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Alquiler y Venta de Andamios</span></div>
                         </div>
                         <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                            <div className="h-[160px]"><img alt="Mantenimientos" className="w-full h-full object-cover" loading="lazy" src="/s/servicio-0004.webp"/></div>
+                            <div className="h-[160px]"><img alt="Mantenimientos" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio-0004.webp`} /></div>
                             <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Mantenimientos</span></div>
                         </div>
                         <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                            <div className="h-[160px]"><img alt="Pintados" className="w-full h-full object-cover" loading="lazy" src="/s/servicio-0005.webp"/></div>
+                            <div className="h-[160px]"><img alt="Pintados" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio-0005.webp`} /></div>
                             <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Pintados</span></div>
                         </div>
                         <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                            <div className="h-[160px]"><img alt="Limpieza de Vidrios" className="w-full h-full object-cover" loading="lazy" src="/s/servicio-0006.webp"/></div>
+                            <div className="h-[160px]"><img alt="Limpieza de Vidrios" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio-0006.webp`} /></div>
                             <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Limpieza de Vidrios</span></div>
                         </div>
                         <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                            <div className="h-[160px]"><img alt="Pulido y Biselado" className="w-full h-full object-cover" loading="lazy" src="/s/servicio7.webp"/></div>
+                            <div className="h-[160px]"><img alt="Pulido y Biselado" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio7.webp`} /></div>
                             <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Pulido y Biselado</span></div>
                         </div>
                         <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                            <div className="h-[160px]"><img alt="Arenado" className="w-full h-full object-cover" loading="lazy" src="/s/servicio8.webp"/></div>
+                            <div className="h-[160px]"><img alt="Arenado" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio8.webp`} /></div>
                             <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Arenado</span></div>
                         </div>
                     </div>
@@ -386,7 +389,7 @@ const Footer: React.FC = () => {
             <div className="absolute inset-0 bg-[url('https://www.congen.com.pe/public/foto-footer.webp')] bg-cover bg-bottom opacity-10"></div>
             <div className="relative z-10 max-w-4xl mx-auto py-12 px-4 flex flex-col md:flex-row justify-between items-center md:items-start text-white gap-8">
                 <div className="w-full max-w-[280px] text-center md:text-left">
-                    <img alt="Logo" className="h-16 mx-auto md:mx-0 mb-4" src="/logo-footer.svg" />
+                    <img alt="Logo" className="h-16 mx-auto md:mx-0 mb-4" src={`${base}logo-footer.svg`} />
                     <p className="text-xs leading-relaxed mb-4">Somos una empresa, que nació con el objetivo de brindar soluciones inmediatas en vidrios, aluminios, tabiquería y enchapados en general.</p>
                     <div className="text-xs font-semibold space-y-2">
                         <p>(+51) 914 109 040</p>
@@ -394,9 +397,9 @@ const Footer: React.FC = () => {
                         <p>Urb. Ricardo Palma, Mz F Lt 14, SJL</p>
                     </div>
                     <div className="flex justify-center md:justify-start gap-4 mt-4">
-                        <a href="#"><img alt="Facebook" className="w-5 h-5 transition-transform hover:scale-110" src="/red-face.svg" /></a>
-                        <a href="#"><img alt="Instagram" className="w-5 h-5 transition-transform hover:scale-110" src="/red-insta.svg" /></a>
-                        <a href="#"><img alt="TikTok" className="w-5 h-5 transition-transform hover:scale-110" src="/red-tik.svg" /></a>
+                        <a href="#"><img alt="Facebook" className="w-5 h-5 transition-transform hover:scale-110" src={`${base}red-face.svg`} /></a>
+                        <a href="#"><img alt="Instagram" className="w-5 h-5 transition-transform hover:scale-110" src={`${base}red-insta.svg`} /></a>
+                        <a href="#"><img alt="TikTok" className="w-5 h-5 transition-transform hover:scale-110" src={`${base}red-tik.svg`} /></a>
                     </div>
                 </div>
                 <div className="flex flex-col md:flex-row gap-8 md:gap-16 text-center md:text-left md:relative md:-left-16">

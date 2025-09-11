@@ -1,28 +1,30 @@
 import React from 'react';
 
+const base = (import.meta as any).env.BASE_URL || '/';
+
 const aboutChecklist = [
     'Calidad', 'Garantía', 'Eficiencia', 'Seguridad', 'Innovación', 'Post-Venta'
 ];
 
 const suppliers = [
-    { src: '/prov001.webp', alt: 'Supplier 1' },
-    { src: '/prov002.webp', alt: 'Supplier 2' },
-    { src: '/prov003.webp', alt: 'Supplier 3' },
-    { src: '/prov004.webp', alt: 'Supplier 4' },
-    { src: '/prov005.webp', alt: 'Supplier 5' },
-    { src: '/prov006.webp', alt: 'Supplier 6' },
-    { src: '/prov007.webp', alt: 'Supplier 7' },
-    { src: '/prov008.webp', alt: 'Supplier 8' },
+    { src: `${base}prov001.webp`, alt: 'Supplier 1' },
+    { src: `${base}prov002.webp`, alt: 'Supplier 2' },
+    { src: `${base}prov003.webp`, alt: 'Supplier 3' },
+    { src: `${base}prov004.webp`, alt: 'Supplier 4' },
+    { src: `${base}prov005.webp`, alt: 'Supplier 5' },
+    { src: `${base}prov006.webp`, alt: 'Supplier 6' },
+    { src: `${base}prov007.webp`, alt: 'Supplier 7' },
+    { src: `${base}prov008.webp`, alt: 'Supplier 8' },
 ];
 
 const clients = [
-    { src: '/client001.webp', alt: 'Client 1' },
-    { src: '/client002.webp', alt: 'Client 2' },
-    { src: '/client003.webp', alt: 'Client 3' },
-    { src: '/client004.webp', alt: 'Client 4' },
-    { src: '/client005.webp', alt: 'Client 5' },
-    { src: '/client006.webp', alt: 'Client 6' },
-    { src: '/client007.webp', alt: 'Client 7' },
+    { src: `${base}client001.webp`, alt: 'Client 1' },
+    { src: `${base}client002.webp`, alt: 'Client 2' },
+    { src: `${base}client003.webp`, alt: 'Client 3' },
+    { src: `${base}client004.webp`, alt: 'Client 4' },
+    { src: `${base}client005.webp`, alt: 'Client 5' },
+    { src: `${base}client006.webp`, alt: 'Client 6' },
+    { src: `${base}client007.webp`, alt: 'Client 7' },
 ];
 
 const LogoCarousel: React.FC<{ logos: { src: string, alt: string }[], direction: 'left' | 'right' }> = ({ logos, direction }) => (
@@ -42,7 +44,7 @@ const About: React.FC = () => {
             <div className="absolute top-0 left-0 w-full h-36 bg-[#009899] overflow-hidden">
                 <img 
                     decoding="async"
-                    src="/fondo2.webp" 
+                    src={`${base}fondo2.webp`} 
                     alt="Imagen decorativa" 
                     className="w-full h-auto object-cover opacity-70"
                     style={{mixBlendMode: 'color-burn', transform: 'scale(1.6) translateY(-60px)'}}
@@ -53,7 +55,7 @@ const About: React.FC = () => {
             <div className="relative px-4">
                 {/* About Us Section */}
                 <div className="relative max-w-xs md:max-w-[744px] mx-auto bg-[#F3F3F3] rounded-lg shadow-xl p-4 md:p-6 flex flex-col md:flex-row items-center gap-6 z-10 -mt-8">
-                    <img src="/nosotros01.webp" alt="Nosotros" className="w-full md:w-[260px] h-48 md:h-auto object-cover rounded-md" />
+                    <img src={`${base}nosotros01.webp`} alt="Nosotros" className="w-full md:w-[260px] h-48 md:h-auto object-cover rounded-md" />
                     <div className="text-black">
                         <h2 className="text-4xl font-extrabold text-[#990021] -tracking-widest">NOSOTROS</h2>
                         <p className="text-base mt-2 leading-relaxed">

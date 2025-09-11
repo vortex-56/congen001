@@ -1,5 +1,7 @@
 // components/Footer.tsx
 import React from 'react';
+
+const base = (import.meta as any).env.BASE_URL || '/';
 import { useNavigate, useLocation } from 'react-router-dom';
 // 1. Se elimina la importación de Contact
 // import Contact from './Contact';
@@ -48,12 +50,12 @@ const Footer: React.FC = () => {
 
       <div className="relative w-full min-h-[310px] overflow-hidden">
         <div className="absolute inset-0 bg-black">
-          <img src="/foto-footer.webp" alt="" className="w-full h-full object-cover opacity-10" />
+          <img src={`${base}foto-footer.webp`} alt="" className="w-full h-full object-cover opacity-10" />
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto py-12 px-4 flex flex-col md:flex-row justify-between items-center md:items-start text-white gap-8">
           <div className="w-full max-w-[280px] text-center md:text-left">
-            <img src="/logo-footer.svg" alt="Logo" className="h-16 mx-auto md:mx-0 mb-4" />
+            <img src={`${base}logo-footer.svg`} alt="Logo" className="h-16 mx-auto md:mx-0 mb-4" />
             <p className="text-xs leading-relaxed mb-4">
               Somos una empresa, que nació con el objetivo de brindar soluciones inmediatas en vidrios, aluminios, tabiquería y enchapados en general.
             </p>
@@ -64,9 +66,9 @@ const Footer: React.FC = () => {
             </div>
             {location.pathname !== '/vidrios' && location.pathname !== '/andamios' && (
               <div className="flex justify-center md:justify-start gap-4 mt-4">
-                <a href="https://www.facebook.com/congenperu" target="_blank" rel="noopener noreferrer"><img src="/red-face.svg" alt="Facebook" className="w-5 h-5 transition-transform hover:scale-110" /></a>
-                <a href="https://www.instagram.com/congen_peru/" target="_blank" rel="noopener noreferrer"><img src="/red-insta.svg" alt="Instagram" className="w-5 h-5 transition-transform hover:scale-110" /></a>
-                <a href="https://www.tiktok.com/@congen.per" target="_blank" rel="noopener noreferrer"><img src="/red-tik.svg" alt="TikTok" className="w-5 h-5 transition-transform hover:scale-110" /></a>
+                <a href="https://www.facebook.com/congenperu" target="_blank" rel="noopener noreferrer"><img src={`${base}red-face.svg`} alt="Facebook" className="w-5 h-5 transition-transform hover:scale-110" /></a>
+                <a href="https://www.instagram.com/congen_peru/" target="_blank" rel="noopener noreferrer"><img src={`${base}red-insta.svg`} alt="Instagram" className="w-5 h-5 transition-transform hover:scale-110" /></a>
+                <a href="https://www.tiktok.com/@congen.per" target="_blank" rel="noopener noreferrer"><img src={`${base}red-tik.svg`} alt="TikTok" className="w-5 h-5 transition-transform hover:scale-110" /></a>
               </div>
             )}
           </div>

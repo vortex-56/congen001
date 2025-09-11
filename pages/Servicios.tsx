@@ -8,15 +8,17 @@ type Service = {
   title: string;
 };
 
+const base = (import.meta as any).env.BASE_URL || '/';
+
 const serviceData: Service[] = [
-  { id: 1, title: "Carpintería de Vidrio y Aluminio", imageUrl: "/s/servicio1.webp" },
-  { id: 2, title: "Tabiquería y Enchapado", imageUrl: "/s/servicio2.webp" },
-  { id: 3, title: "Alquiler y Venta de Andamios", imageUrl: "/s/servicio3.webp" },
-  { id: 4, title: "Mantenimientos", imageUrl: "/s/servicio-0004.webp" },
-  { id: 5, title: "Pintados", imageUrl: "/s/servicio-0005.webp" },
-  { id: 6, title: "Limpieza de Vidrios", imageUrl: "/s/servicio-0006.webp" },
-  { id: 7, title: "Pulido y Biselado", imageUrl: "/s/servicio7.webp" },
-  { id: 8, title: "Arenado", imageUrl: "/s/servicio8.webp" },
+    { id: 1, title: "Carpintería de Vidrio y Aluminio", imageUrl: `${base}s/servicio1.webp` },
+    { id: 2, title: "Tabiquería y Enchapado", imageUrl: `${base}s/servicio2.webp` },
+    { id: 3, title: "Alquiler y Venta de Andamios", imageUrl: `${base}s/servicio3.webp` },
+    { id: 4, title: "Mantenimientos", imageUrl: `${base}s/servicio-0004.webp` },
+    { id: 5, title: "Pintados", imageUrl: `${base}s/servicio-0005.webp` },
+    { id: 6, title: "Limpieza de Vidrios", imageUrl: `${base}s/servicio-0006.webp` },
+    { id: 7, title: "Pulido y Biselado", imageUrl: `${base}s/servicio7.webp` },
+    { id: 8, title: "Arenado", imageUrl: `${base}s/servicio8.webp` },
 ];
 
 const ServiceCard: React.FC<Service> = ({ imageUrl, title }) => (
@@ -59,7 +61,7 @@ const Servicios: React.FC = () => {
     return (
         <main className="w-full">
             {/* Hero Section */}
-            <div className="relative w-full h-[198px] bg-[url('/s/03fondo01.webp')] bg-cover bg-center flex flex-col justify-between items-center overflow-x-hidden">
+            <div className="relative w-full h-[198px] bg-cover bg-center flex flex-col justify-between items-center overflow-x-hidden" style={{ backgroundImage: `url(${base}s/03fondo01.webp)` }}>
                 <div className="w-full h-1/2 bg-gradient-to-b from-black/50 to-transparent"></div>
                 <div className="w-full h-1/2 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">

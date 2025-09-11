@@ -4,6 +4,9 @@ import UMarcas from '../components/UMarcas';
 import UProyectos from '../components/UProyectos';
 import FloatingWhatsApp from '../components/FloatingWhatsApp';
 
+// Vite base for assets when hosted to a subpath (ex: /congen001/)
+const base = (import.meta as any).env.BASE_URL || '/';
+
 // --- Constants ---
 const services = [
     "Carpintería de Vidrio y Aluminio", "Tabiquería y Enchapado", "Alquiler y Venta de Andamios",
@@ -152,9 +155,9 @@ const Header: React.FC = () => {
     return (
         <div className="absolute top-0 left-0 right-0 z-10 p-4">
             <div className="container mx-auto hidden md:flex flex-col md:flex-row justify-center items-center gap-2 md:gap-6 text-white text-shadow-sm scale-110">
-                <ContactItem icon="https://www.congen.com.pe/public/mail.svg" text="ventas@congen.com.pe" alt="Email icon" />
-                <ContactItem icon="https://www.congen.com.pe/public/phone.svg" text="(+51) 914 109 040" alt="Phone icon" />
-                <ContactItem icon="https://www.congen.com.pe/public/point.svg" text="Urb. Ricardo Palma, Mz F Lt 14, SJL" alt="Location icon" />
+                <ContactItem icon={`${base}mail.svg`} text="ventas@congen.com.pe" alt="Email icon" />
+                <ContactItem icon={`${base}phone.svg`} text="(+51) 914 109 040" alt="Phone icon" />
+                <ContactItem icon={`${base}point.svg`} text="Urb. Ricardo Palma, Mz F Lt 14, SJL" alt="Location icon" />
             </div>
         </div>
     );
@@ -164,13 +167,13 @@ const Hero: React.FC = () => {
     const textShadow = { textShadow: '-1px 2px 2px rgba(0,0,0,0.5), 0px 0px 16px rgba(0,0,0,0.77)' };
 
     return (
-        <section className="relative w-full h-auto bg-[url('/t2-bg1.webp')] bg-cover bg-center flex flex-col items-center pt-0 md:pt-16 pb-20 md:pb-[120px] px-4">
+    <section className="relative w-full h-auto bg-cover bg-center flex flex-col items-center pt-0 md:pt-16 pb-20 md:pb-[120px] px-4" style={{ backgroundImage: `url(${base}t2-bg1.webp)` }}>
             
             <div className="w-full max-w-[744px] flex flex-col md:flex-row justify-center items-center md:items-end gap-8 mt-0 md:mt-8">
                 {/* Left Side: Title and Image */}
                     <div className="flex flex-col items-center md:items-start gap-4">
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                        <img src="/logo3.svg" alt="Congen Logo" className="w-[312px] h-auto mb-2 mt-2 md:-ml-8 lg:w-[172px] lg:-ml-6" />
+                        <img src={`${base}logo3.svg`} alt="Congen Logo" className="w-[312px] h-auto mb-2 mt-2 md:-ml-8 lg:w-[172px] lg:-ml-6" />
                         <span className="text-white text-sm" style={{textShadow: '0 0 8px black'}}>Ofrecemos Servicios de</span>
                         <h1 className="text-white text-lg md:text-2xl font-extrabold leading-tight tracking-tight" style={textShadow}>
                             ALQUILER Y VENTA DE ANDAMIOS CONVENCIONALES ACROW
@@ -178,7 +181,7 @@ const Hero: React.FC = () => {
                         <span className="text-white text-base" style={{textShadow: '0 0 8px black'}}>En Lima y Provincias</span>
                     </div>
                     <div className="w-full max-w-[320px] h-auto p-2 rounded-lg bg-[#0404048F] border-2 border-[#009899]">
-                        <img src="/t2-imagen-portada.webp" alt="Carpintería de vidrios y aluminios" className="rounded-md w-full h-full object-cover" />
+                        <img src={`${base}t2-imagen-portada.webp`} alt="Carpintería de vidrios y aluminios" className="rounded-md w-full h-full object-cover" />
                     </div>
                 </div>
 
@@ -192,15 +195,15 @@ const Hero: React.FC = () => {
             {/* Mobile Contact Info */}
                 <div className="md:hidden mt-8 flex flex-col justify-center items-center gap-2 text-white">
                 <div className="flex items-center gap-2">
-                    <img src="/mail.svg" alt="Email icon" className="w-4 h-4" />
+                    <img src={`${base}mail.svg`} alt="Email icon" className="w-4 h-4" />
                     <span className="text-white text-xs" style={{textShadow: '0 0 4px black'}}>ventas@congen.com.pe</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <img src="/phone.svg" alt="Phone icon" className="w-4 h-4" />
+                    <img src={`${base}phone.svg`} alt="Phone icon" className="w-4 h-4" />
                     <span className="text-white text-xs" style={{textShadow: '0 0 4px black' }}>(+51) 914 109 040</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <img src="/point.svg" alt="Location icon" className="w-4 h-4" />
+                    <img src={`${base}point.svg`} alt="Location icon" className="w-4 h-4" />
                     <span className="text-white text-xs" style={{textShadow: '0 0 4px black' }}>Urb. Ricardo Palma, Mz F Lt 14, SJL</span>
                 </div>
             </div>
@@ -214,13 +217,13 @@ const Hero: React.FC = () => {
                 className="hidden md:flex items-center justify-center mt-[72px] cursor-pointer group"
             >
                 <div className="transition-transform duration-300 group-hover:translate-y-1">
-                    <img src="/ico-arrow.svg" alt="Flecha hacia abajo" />
+                    <img src={`${base}ico-arrow.svg`} alt="Flecha hacia abajo" />
                 </div>
                 <span className="text-white text-base font-semibold mx-4 tracking-wide" style={{ textShadow: '0 0 8px black' }}>
                     Saber más sobre nosotros
                 </span>
                 <div className="transition-transform duration-300 group-hover:translate-y-1">
-                    <img src="/ico-arrow.svg" alt="Flecha hacia abajo" />
+                    <img src={`${base}ico-arrow.svg`} alt="Flecha hacia abajo" />
                 </div>
             </button>
 
@@ -238,16 +241,16 @@ const ProductsSection: React.FC = () => {
                 {/* Use flex-wrap and fixed-size cards so images keep the same width/height on all breakpoints */}
                 <div className="w-full flex flex-wrap justify-center gap-6 mt-4">
                     <div className="w-[168px] h-[168px] bg-[#1F3D44] rounded-md outline outline-2 outline-[#009899] p-1 flex-shrink-0">
-                        <img alt="Product 1" className="w-full h-full object-cover rounded" src="/t2-img1.webp" />
+                        <img alt="Product 1" className="w-full h-full object-cover rounded" src={`${base}t2-img1.webp`} />
                     </div>
                     <div className="w-[168px] h-[168px] bg-[#1F3D44] rounded-md outline outline-2 outline-[#009899] p-1 flex-shrink-0">
-                        <img alt="Product 2" className="w-full h-full object-cover rounded" src="/t2-img2.webp" />
+                        <img alt="Product 2" className="w-full h-full object-cover rounded" src={`${base}t2-img2.webp`} />
                     </div>
                     <div className="w-[168px] h-[168px] bg-[#1F3D44] rounded-md outline outline-2 outline-[#009899] p-1 flex-shrink-0">
-                        <img alt="Product 3" className="w-full h-full object-cover rounded" src="/t2-img3.webp" />
+                        <img alt="Product 3" className="w-full h-full object-cover rounded" src={`${base}t2-img3.webp`} />
                     </div>
                     <div className="w-[168px] h-[168px] bg-[#1F3D44] rounded-md outline outline-2 outline-[#009899] p-1 flex-shrink-0">
-                        <img alt="Product 4" className="w-full h-full object-cover rounded" src="/t2-img4.webp" />
+                        <img alt="Product 4" className="w-full h-full object-cover rounded" src={`${base}t2-img4.webp`} />
                     </div>
                 </div>
             </section>
@@ -256,7 +259,7 @@ const ProductsSection: React.FC = () => {
                 <div className="w-full h-[2px] bg-[#009899]" />
                 <div className="w-full flex flex-col lg:flex-row justify-start items-center gap-6 mt-4">
                     <div className="flex-shrink-0 w-[240px] h-[144px] sm:w-[342px] sm:h-[206px] p-1 rounded-lg bg-[#1F3D44] outline outline-2 outline-[#009899] mx-auto lg:mx-0">
-                        <img alt="Service Description" className="w-full h-full object-cover rounded-md" src="/t2-imagen-descripcion.webp" />
+                        <img alt="Service Description" className="w-full h-full object-cover rounded-md" src={`${base}t2-imagen-descripcion.webp`} />
                     </div>
                     <p className="text-black text-sm text-left leading-6 tracking-tight">Contamos con una amplia variedad de andamios convencionales diseñados para garantizar seguridad y eficiencia en cada trabajo. Todos nuestros productos están homologados, lo que asegura su cumplimiento con los más altos estándares de calidad y normativas vigentes en el sector. Nuestro catálogo incluye componentes como marcos, plataformas, diagonales y abrazaderas que permiten construir estructuras robustas y duraderas.</p>
                 </div>
@@ -274,7 +277,7 @@ const ServicesSection: React.FC = () => {
                 <div className="h-0.5 bg-[#009899] mt-2 mb-4"></div>
                 <div className="flex flex-col md:flex-row items-center gap-6">
                     <div className="hidden md:block flex-shrink-0 w-[168px] h-[206px] p-1 bg-[#1F3D44] rounded-lg outline outline-2 outline-[#009899]">
-                        <img src="/l1-portada.webp" alt="Servicios Congen" className="w-full h-full object-cover rounded" />
+                        <img src={`${base}l1-portada.webp`} alt="Servicios Congen" className="w-full h-full object-cover rounded" />
                     </div>
                     <p className="text-black text-sm text-left leading-relaxed">
                         En nuestra empresa nos especializamos en la <strong className="font-bold uppercase text-[#990021]">carpintería de vidrios y aluminios</strong>, ofreciendo soluciones personalizadas y de alta calidad para satisfacer las necesidades de nuestros clientes en <strong className="font-bold uppercase text-[#990021]">Lima y provincias</strong>. Entre nuestros productos destacados se encuentran el <strong className="font-bold uppercase text-[#990021]">Sistema Nova</strong>, diseñado para espacios modernos y minimalistas; las <strong className="font-bold uppercase text-[#990021]">Series 20 y 25</strong>, ideales por su resistencia y excelente capacidad de aislamiento térmico y acústico; opciones <strong className="font-bold uppercase text-[#990021]">Acústicas y Anti Ruido</strong>, perfectas para reducir el ruido exterior en ambientes urbanos; <strong className="font-bold uppercase text-[#990021]">estructuras en PVC</strong>, conocidas por su alto rendimiento en aislamiento térmico; el elegante y funcional <strong className="font-bold uppercase text-[#990021]">Slide System</strong>, pensado para optimizar espacios reducidos; y nuestras <strong className="font-bold uppercase text-[#990021]">Puertas de Ducha</strong>, fabricadas con vidrio templado de alta resistencia, ideales para baños modernos y sofisticados.
@@ -290,42 +293,42 @@ const ServicesSection: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center">
                     <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <div className="h-[160px]"><img alt="Carpintería de Vidrio y Aluminio" className="w-full h-full object-cover" loading="lazy" src="/s/servicio1.webp" /></div>
+                        <div className="h-[160px]"><img alt="Carpintería de Vidrio y Aluminio" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio1.webp`} /></div>
                         <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Carpintería de Vidrio y Aluminio</span></div>
                     </div>
 
                     <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <div className="h-[160px]"><img alt="Tabiquería y Enchapado" className="w-full h-full object-cover" loading="lazy" src="/s/servicio2.webp" /></div>
+                        <div className="h-[160px]"><img alt="Tabiquería y Enchapado" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio2.webp`} /></div>
                         <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Tabiquería y Enchapado</span></div>
                     </div>
 
                     <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <div className="h-[160px]"><img alt="Alquiler y Venta de Andamios" className="w-full h-full object-cover" loading="lazy" src="/s/servicio3.webp" /></div>
+                        <div className="h-[160px]"><img alt="Alquiler y Venta de Andamios" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio3.webp`} /></div>
                         <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Alquiler y Venta de Andamios</span></div>
                     </div>
 
                     <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <div className="h-[160px]"><img alt="Mantenimientos" className="w-full h-full object-cover" loading="lazy" src="/s/servicio-0004.webp" /></div>
+                        <div className="h-[160px]"><img alt="Mantenimientos" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio-0004.webp`} /></div>
                         <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Mantenimientos</span></div>
                     </div>
 
                     <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <div className="h-[160px]"><img alt="Pintados" className="w-full h-full object-cover" loading="lazy" src="/s/servicio-0005.webp" /></div>
+                        <div className="h-[160px]"><img alt="Pintados" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio-0005.webp`} /></div>
                         <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Pintados</span></div>
                     </div>
 
                     <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <div className="h-[160px]"><img alt="Limpieza de Vidrios" className="w-full h-full object-cover" loading="lazy" src="/s/servicio-0006.webp" /></div>
+                        <div className="h-[160px]"><img alt="Limpieza de Vidrios" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio-0006.webp`} /></div>
                         <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Limpieza de Vidrios</span></div>
                     </div>
 
                     <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <div className="h-[160px]"><img alt="Pulido y Biselado" className="w-full h-full object-cover" loading="lazy" src="/s/servicio7.webp" /></div>
+                        <div className="h-[160px]"><img alt="Pulido y Biselado" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio7.webp`} /></div>
                         <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Pulido y Biselado</span></div>
                     </div>
 
                     <div className="w-full max-w-[364px] h-[192px] rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <div className="h-[160px]"><img alt="Arenado" className="w-full h-full object-cover" loading="lazy" src="/s/servicio8.webp" /></div>
+                        <div className="h-[160px]"><img alt="Arenado" className="w-full h-full object-cover" loading="lazy" src={`${base}s/servicio8.webp`} /></div>
                         <div className="h-[32px] bg-black flex justify-center items-center"><span className="text-white text-sm font-semibold">Arenado</span></div>
                     </div>
                 </div>
@@ -371,10 +374,10 @@ const FooterLinkList: React.FC<{ title: string; items: string[] }> = ({ title, i
 const Footer: React.FC = () => {
     return (
         <footer className="relative w-full bg-[#0c0c0c] pt-12 pb-8 px-4 text-white">
-            <div className="absolute inset-0 bg-[url('/foto-footer.webp')] bg-cover bg-bottom opacity-10"></div>
+            <div className="absolute inset-0 bg-cover bg-bottom opacity-10" style={{ backgroundImage: `url(${base}foto-footer.webp)` }}></div>
             <div className="relative z-10 max-w-4xl mx-auto py-12 px-4 flex flex-col md:flex-row justify-between items-center md:items-start text-white gap-8">
                 <div className="w-full max-w-[280px] text-center md:text-left">
-                    <img alt="Logo" className="h-16 mx-auto md:mx-0 mb-4" src="/logo-footer.svg" />
+                    <img alt="Logo" className="h-16 mx-auto md:mx-0 mb-4" src={`${base}logo-footer.svg`} />
                     <p className="text-xs leading-relaxed mb-4">Somos una empresa, que nació con el objetivo de brindar soluciones inmediatas en vidrios, aluminios, tabiquería y enchapados en general.</p>
                     <div className="text-xs font-semibold space-y-2">
                         <p>(+51) 914 109 040</p>
@@ -382,9 +385,9 @@ const Footer: React.FC = () => {
                         <p>Urb. Ricardo Palma, Mz F Lt 14, SJL</p>
                     </div>
                     <div className="flex justify-center md:justify-start gap-4 mt-4">
-                        <a href="#"><img alt="Facebook" className="w-5 h-5 transition-transform hover:scale-110" src="/red-face.svg" /></a>
-                        <a href="#"><img alt="Instagram" className="w-5 h-5 transition-transform hover:scale-110" src="/red-insta.svg" /></a>
-                        <a href="#"><img alt="TikTok" className="w-5 h-5 transition-transform hover:scale-110" src="/red-tik.svg" /></a>
+                        <a href="#"><img alt="Facebook" className="w-5 h-5 transition-transform hover:scale-110" src={`${base}red-face.svg`} /></a>
+                        <a href="#"><img alt="Instagram" className="w-5 h-5 transition-transform hover:scale-110" src={`${base}red-insta.svg`} /></a>
+                        <a href="#"><img alt="TikTok" className="w-5 h-5 transition-transform hover:scale-110" src={`${base}red-tik.svg`} /></a>
                     </div>
                 </div>
                 <div className="flex flex-col md:flex-row gap-8 md:gap-16 text-center md:text-left md:relative md:-left-16">

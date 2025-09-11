@@ -9,29 +9,31 @@ type Product = {
   category: string;
 };
 
+const base = (import.meta as any).env.BASE_URL || '/';
+
 const productData: Product[] = [
-    { id: 1, title: "SISTEMA NOVA", category: "Vidrios", imageUrl: "/p/w02img1.webp" },
-    { id: 2, title: "SERIE 20", category: "Vidrios", imageUrl: "/p/w02img2.webp" },
-    { id: 3, title: "SERIE 25", category: "Vidrios", imageUrl: "/p/w02img3.webp" },
-    { id: 4, title: "ACUSTICAS/ANTI RUIDOS", category: "Vidrios", imageUrl: "/p/w02img4.webp" },
-    { id: 6, title: "PVC", category: "Vidrios", imageUrl: "/p/w02img6.webp" },
-    { id: 7, title: "SLIDE SYSTEM", category: "Vidrios", imageUrl: "/p/w02img7.webp" },
-    { id: 8, title: "PUERTAS DE DUCHA", category: "Vidrios", imageUrl: "/p/w02img8.webp" },
-    { id: 9, title: "ESPEJOS", category: "Mobiliario", imageUrl: "/p/w02img9.webp" },
-    { id: 10, title: "MÓDULOS", category: "Mobiliario", imageUrl: "/p/w02img10.webp" },
-    { id: 11, title: "MESAS", category: "Mobiliario", imageUrl: "/p/w02img11.webp" },
-    { id: 12, title: "REPISAS", category: "Mobiliario", imageUrl: "/p/w02img12.webp" },
-    { id: 13, title: "PIZARRAS", category: "Mobiliario", imageUrl: "/p/w02img13.webp" },
-    { id: 14, title: "BRAZOS HIDRÁULICOS", category: "Accesorios", imageUrl: "/p/w02img14.webp" },
-    { id: 15, title: "TIRADORES", category: "Accesorios", imageUrl: "/p/w02img15.webp" },
-    { id: 16, title: "CERRADURAS", category: "Accesorios", imageUrl: "/p/w02img16.webp" },
-    { id: 17, title: "FRENOS HIDRÁULICOS", category: "Accesorios", imageUrl: "/p/w02img17.webp" },
-    { id: 18, title: "VINILOS", category: "Accesorios", imageUrl: "/p/w02img18.webp" },
-    { id: 19, title: "VENTOSAS", category: "Accesorios", imageUrl: "/p/w02img19.webp" },
-    { id: 20, title: "DRYWALL", category: "Tabiquería y Enchapados", imageUrl: "/p/w02img20.webp" },
-    { id: 21, title: "ENCHAPADOS", category: "Tabiquería y Enchapados", imageUrl: "/p/w02img21.webp" },
-    { id: 22, title: "LADRILLO", category: "Tabiquería y Enchapados", imageUrl: "/p/w02img22.webp" },
-    { id: 23, title: "ANDAMIOS ACROW", category: "Andamios", imageUrl: "/p/w02img23.webp" },
+    { id: 1, title: "SISTEMA NOVA", category: "Vidrios", imageUrl: `${base}p/w02img1.webp` },
+    { id: 2, title: "SERIE 20", category: "Vidrios", imageUrl: `${base}p/w02img2.webp` },
+    { id: 3, title: "SERIE 25", category: "Vidrios", imageUrl: `${base}p/w02img3.webp` },
+    { id: 4, title: "ACUSTICAS/ANTI RUIDOS", category: "Vidrios", imageUrl: `${base}p/w02img4.webp` },
+    { id: 6, title: "PVC", category: "Vidrios", imageUrl: `${base}p/w02img6.webp` },
+    { id: 7, title: "SLIDE SYSTEM", category: "Vidrios", imageUrl: `${base}p/w02img7.webp` },
+    { id: 8, title: "PUERTAS DE DUCHA", category: "Vidrios", imageUrl: `${base}p/w02img8.webp` },
+    { id: 9, title: "ESPEJOS", category: "Mobiliario", imageUrl: `${base}p/w02img9.webp` },
+    { id: 10, title: "MÓDULOS", category: "Mobiliario", imageUrl: `${base}p/w02img10.webp` },
+    { id: 11, title: "MESAS", category: "Mobiliario", imageUrl: `${base}p/w02img11.webp` },
+    { id: 12, title: "REPISAS", category: "Mobiliario", imageUrl: `${base}p/w02img12.webp` },
+    { id: 13, title: "PIZARRAS", category: "Mobiliario", imageUrl: `${base}p/w02img13.webp` },
+    { id: 14, title: "BRAZOS HIDRÁULICOS", category: "Accesorios", imageUrl: `${base}p/w02img14.webp` },
+    { id: 15, title: "TIRADORES", category: "Accesorios", imageUrl: `${base}p/w02img15.webp` },
+    { id: 16, title: "CERRADURAS", category: "Accesorios", imageUrl: `${base}p/w02img16.webp` },
+    { id: 17, title: "FRENOS HIDRÁULICOS", category: "Accesorios", imageUrl: `${base}p/w02img17.webp` },
+    { id: 18, title: "VINILOS", category: "Accesorios", imageUrl: `${base}p/w02img18.webp` },
+    { id: 19, title: "VENTOSAS", category: "Accesorios", imageUrl: `${base}p/w02img19.webp` },
+    { id: 20, title: "DRYWALL", category: "Tabiquería y Enchapados", imageUrl: `${base}p/w02img20.webp` },
+    { id: 21, title: "ENCHAPADOS", category: "Tabiquería y Enchapados", imageUrl: `${base}p/w02img21.webp` },
+    { id: 22, title: "LADRILLO", category: "Tabiquería y Enchapados", imageUrl: `${base}p/w02img22.webp` },
+    { id: 23, title: "ANDAMIOS ACROW", category: "Andamios", imageUrl: `${base}p/w02img23.webp` },
 ];
 
 const ArrowLeftIcon = () => (
@@ -100,7 +102,7 @@ const Productos: React.FC = () => {
     return (
         <main className="w-full">
             {/* Hero Section */}
-            <div className="relative w-full h-[198px] bg-[url('/02fondo01.webp')] bg-cover bg-center flex flex-col justify-between items-center overflow-x-hidden">
+            <div className="relative w-full h-[198px] bg-cover bg-center flex flex-col justify-between items-center overflow-x-hidden" style={{ backgroundImage: `url(${base}02fondo01.webp)` }}>
                 <div className="w-full h-1/2 bg-gradient-to-b from-black/50 to-transparent"></div>
                 <div className="w-full h-1/2 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
