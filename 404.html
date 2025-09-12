@@ -10,27 +10,40 @@
       // Redirect unknown Pages routes back to the SPA root while preserving the path
       (function () {
         try {
-          // Adjust this repo base if you ever change the GitHub Pages path
-          var repoBase = '/congen001';
-          var requested = window.location.pathname + window.location.search + window.location.hash;
-          // Strip repo base if present
-          if (requested.indexOf(repoBase) === 0) {
-            requested = requested.slice(repoBase.length);
-          }
-          // Build the target using a hash route so the SPA router can handle it
-          var target = repoBase + '/#' + (requested || '/');
+              // Compute repo base dynamically from the first path segment (works on GitHub Pages)
+              var parts = window.location.pathname.split('/');
+              var repoBase = parts.length > 1 && parts[1] ? '/' + parts[1] : '';
+              var requested = window.location.pathname + window.location.search + window.location.hash;
+              // If the location already includes the repo base, strip it for the SPA hash target
+              if (repoBase && requested.indexOf(repoBase) === 0) {
+                requested = requested.slice(repoBase.length);
+              }
+              // Build the target using a hash route so the SPA router can handle it
+              var target = (repoBase || '/') + '#' + (requested || '/');
           // Normalize multiple slashes
           target = target.replace(/\/+/g, '/');
           // Replace the current location (no history entry)
           window.location.replace(target);
         } catch (e) {
-          // Fallback: send to repo root
-          window.location.replace('/congen001/');
+          // Fallback: send to repo root (best-effort)
+          window.location.replace((repoBase || '/') );
         }
       })();
     </script>
   </head>
   <body>
-    <p>Redirigiendo... <a href="/congen001/">Volver al inicio</a></p>
+    <p>Redirigiendo... <span id="home-link">Volver al inicio</span></p>
+    <script>
+      // Replace the placeholder with a proper link using the computed repoBase
+      (function(){
+        var parts = window.location.pathname.split('/');
+        var repoBase = parts.length > 1 && parts[1] ? '/' + parts[1] + '/' : '/';
+        var a = document.createElement('a');
+        a.href = repoBase;
+        a.textContent = 'Volver al inicio';
+        var span = document.getElementById('home-link');
+        if(span) span.parentNode.replaceChild(a, span);
+      })();
+    </script>
   </body>
 </html>
