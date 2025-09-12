@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirigiendo…</title>
+    <script>
+      // When GitHub Pages serves this 404 for an SPA route, fetch the SPA's index.html
+      // and inline it into the document while keeping the original URL. This allows
+      // BrowserRouter (history API) to read the pathname and render the correct page
+      // without switching to hash-based routes.
+      (function () {
+        try {
+          var parts = window.location.pathname.split('/');
+          var repoBase = parts.length > 1 && parts[1] ? '/' + parts[1] + '/' : '/';
+          var requested = window.location.pathname + window.location.search + window.location.hash;
+          var indexUrl = repoBase + 'index.html';
+
+          // Fetch the deployed index.html and write it into the current document.
+          // After writing, restore the original URL in the address bar so the SPA
+          // sees the correct pathname.
+          fetch(indexUrl, {cache: 'no-store'}).then(function (response) {
+            if (!response.ok) {
+              // If fetching fails, fallback to repo root
+              window.location.replace(repoBase);
+              return null;
+            }
+            return response.text();
+          }).then(function (html) {
+            if (!html) return;
+            document.open();
+            document.write(html);
+            document.close();
+            try {
+              // Restore the original requested URL so the SPA router can match it
+              history.replaceState(null, '', requested);
+            } catch (e) {
+              // If replaceState fails, try a conservative replace to repo base
+              window.location.replace(repoBase);
+            }
+          }).catch(function () {
+            window.location.replace(repoBase);
+          });
+        } catch (e) {
+          // Fallback: send to repo root (best-effort)
+          var parts = window.location.pathname.split('/');
+          var repoBase = parts.length > 1 && parts[1] ? '/' + parts[1] + '/' : '/';
+          window.location.replace(repoBase);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirigiendo... <span id="home-link">Volver al inicio</span></p>
+    <script>
+      // Provide a normal link as a fallback while the fetch runs.
+      (function(){
+        var parts = window.location.pathname.split('/');
+        var repoBase = parts.length > 1 && parts[1] ? '/' + parts[1] + '/' : '/';
+        var a = document.createElement('a');
+        a.href = repoBase;
+        a.textContent = 'Volver al inicio';
+        var span = document.getElementById('home-link');
+        if(span) span.parentNode.replaceChild(a, span);
+      })();
+    </script>
+  </body>
+</html>
