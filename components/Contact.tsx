@@ -9,9 +9,9 @@ interface FormState {
 }
 
 const contactDetails = [
-  { icon: '/phone.svg', title: 'Teléfono', info: '914 109 040' },
-  { icon: '/mail.svg', title: 'Correo Electrónico', info: 'ventas@congen.com.pe' },
-  { icon: '/point.svg', title: 'Dirección', info: 'Urb. Ricardo Palma, Mz F Lt 14, SJL' },
+  { icon: import.meta.env.BASE_URL + 'phone.svg', title: 'Teléfono', info: '914 109 040' },
+  { icon: import.meta.env.BASE_URL + 'mail.svg', title: 'Correo Electrónico', info: 'ventas@congen.com.pe' },
+  { icon: import.meta.env.BASE_URL + 'point.svg', title: 'Dirección', info: 'Urb. Ricardo Palma, Mz F Lt 14, SJL' },
 ];
 
 const Contact: React.FC = () => {

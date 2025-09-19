@@ -2,23 +2,23 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 const offers = [
-  {
-    title: 'OFERTAS EN ANDAMIOS',
-    image: '/andamio-emergente.webp',
-    alt: 'oferta de andamio acrow',
-    text: 'Ofrecemos Andamios ACROW certificados en Alquiler y Venta',
-    link: '/andamios'
-  },
+    {
+        title: 'OFERTAS EN ANDAMIOS',
+        image: import.meta.env.BASE_URL + 'andamio-emergente.webp',
+        alt: 'oferta de andamio acrow',
+        text: 'Ofrecemos Andamios ACROW certificados en Alquiler y Venta',
+        link: '/andamios'
+    },
   {
     title: 'OFERTAS EN VIDRIOS',
-    image: '/vidrios-emergentes.webp',
+        image: import.meta.env.BASE_URL + 'vidrios-emergentes.webp',
     alt: 'oferta de vidrios',
     text: 'Ofrecemos una gran variedad de productos de vidrios',
     link: '/vidrios'
   },
   {
     title: 'NUESTROS PRODUCTOS',
-    image: '/productos-emergentes.webp',
+        image: import.meta.env.BASE_URL + 'productos-emergentes.webp',
     alt: 'nuestros productos',
     text: 'Contamos con una gran variedad de productos de vidrios y accesorios',
     link: '/productos'
@@ -103,13 +103,14 @@ const Ofertas: React.FC = () => {
                     {/* Content Area */}
                     <div className="p-4 flex flex-col items-center text-center">
                         {/* Image */}
-                        <div className="w-full mb-3">
-                            <img 
-                                src={currentOffer.image} 
-                                alt={currentOffer.alt} 
-                                className="w-full h-[80px] object-cover rounded-[6px]" 
-                            />
-                        </div>
+                                            <div className="w-full mb-3">
+                                                <img 
+                                                    src={currentOffer.image} 
+                                                    alt={currentOffer.alt} 
+                                                    className="w-full h-[80px] object-cover rounded-[6px]" 
+                                                    loading="lazy"
+                                                />
+                                            </div>
 
                         {/* Info Text */}
                         <p className="text-sm font-normal mb-3 h-[40px] flex items-center justify-center">

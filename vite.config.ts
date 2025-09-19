@@ -3,9 +3,12 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
     return {
-      // base is required when deploying a project site to GitHub Pages under a repository
-      // so asset URLs are prefixed correctly (e.g. /congen001/assets/...)
-      base: '/congen001/',
+  // Use a relative base so built asset URLs are relative to the current path.
+  // This makes the production build work both on a custom domain (site root)
+  // and on a GitHub Pages project site (username.github.io/repo) without
+  // requiring different builds. If you prefer absolute-root assets instead,
+  // change this back to '/' or '/congen001/' and rebuild.
+  base: './',
       resolve: {
         alias: {
           '@': path.resolve(__dirname, '.'),
