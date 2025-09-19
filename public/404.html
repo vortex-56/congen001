@@ -14,8 +14,20 @@
       (function () {
         try {
           var parts = window.location.pathname.split('/');
-          var repoBase = parts.length > 1 && parts[1] ? '/' + parts[1] + '/' : '/';
+          var host = window.location.hostname || '';
+          // On custom domains (congen.com.pe) use root '/' as base. On github.io project pages
+          // the repo name is the first path segment (user.github.io/repo). Detect that by host.
+          var repoBase = '/';
+          if (/\.github\.io$/.test(host)) {
+            if (parts.length > 1 && parts[1]) {
+              repoBase = '/' + parts[1] + '/';
+            }
+          }
           var requested = window.location.pathname + window.location.search + window.location.hash;
+          // If we computed a repoBase and the requested path starts with it, strip it for the fetch target
+          if (repoBase !== '/' && requested.indexOf(repoBase) === 0) {
+            requested = requested.slice(repoBase.length);
+          }
           var indexUrl = repoBase + 'index.html';
 
           // Fetch the deployed index.html and write it into the current document.
@@ -51,14 +63,26 @@
         }
       })();
     </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-P2QX664F');</script>
+  <!-- End Google Tag Manager -->
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2QX664F" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <p>Redirigiendo... <span id="home-link">Volver al inicio</span></p>
     <script>
       // Provide a normal link as a fallback while the fetch runs.
       (function(){
         var parts = window.location.pathname.split('/');
-        var repoBase = parts.length > 1 && parts[1] ? '/' + parts[1] + '/' : '/';
+        var host = window.location.hostname || '';
+        var repoBase = '/';
+        if (/\.github\.io$/.test(host)) {
+          if (parts.length > 1 && parts[1]) {
+            repoBase = '/' + parts[1] + '/';
+          }
+        }
         var a = document.createElement('a');
         a.href = repoBase;
         a.textContent = 'Volver al inicio';
