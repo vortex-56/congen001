@@ -36,7 +36,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       }
     })();
   </script>
-  </body>
+  
+<script>
+  (function(){
+    // If we landed on 404 for a SPA route, save the requested URL and go to /
+    try {
+      var attempted = window.location.href;
+      if (!sessionStorage.getItem('redirect') || sessionStorage.getItem('redirect') !== attempted) {
+        sessionStorage.setItem('redirect', attempted);
+      }
+    } catch(e){}
+    try { window.location.replace('/'); } catch(e) { window.location.href = '/'; }
+  })();
+</script>
+</body>
   <script>
     // Runtime error reporter: shows uncaught errors and unhandled rejections in the page
     (function(){
