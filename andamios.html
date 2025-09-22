@@ -20,6 +20,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <script type="module" crossorigin src="/assets/index-GSTi3w0z.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-CCLCQIkz.css">
 </head>
+<script>
+  (function(){
+    try{
+      var path=location.pathname;
+      var canonical='/undefined';
+      if(path===canonical+'/ ' || path===canonical+'/' || path===canonical+'.html' || path===canonical+'/index.html'){
+        history.replaceState(null,'',canonical);
+      } else if(path.endsWith('/undefined/')){
+        history.replaceState(null,'',canonical);
+      }
+    }catch(e){}
+  })();
+</script>
+
 <body data-rsssl="1">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2QX664F"
