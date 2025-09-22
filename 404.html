@@ -16,7 +16,19 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-P2QX664F');</script>
-<!-- End Google Tag Manager -->
+  <!-- End Google Tag Manager -->
+  <script>
+    // Handle GitHub Pages SPA redirects (run early in head)
+    (function(){
+      try {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== window.location.href) {
+          try { window.history.replaceState(null, null, redirect); } catch(e) { /* ignore */ }
+        }
+      } catch (e) { /* ignore */ }
+    })();
+  </script>
   <script type="module" crossorigin src="/assets/index-CwFaYq5I.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-CCLCQIkz.css">
 </head>
@@ -26,16 +38,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <div id="root"></div>
-  <script>
-    // Handle GitHub Pages SPA redirects
-    (function(){
-      var redirect = sessionStorage.redirect;
-      delete sessionStorage.redirect;
-      if (redirect && redirect !== window.location.href) {
-        window.history.replaceState(null, null, redirect);
-      }
-    })();
-  </script>
+  <!-- The SPA redirect restore script is moved to the document head so it runs
+       before the Vite module bundle mounts the app. This prevents a race where
+       the app boots at '/' and doesn't pick up the restored path. -->
   
 <script>
   (function(){
