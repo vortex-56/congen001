@@ -21,6 +21,14 @@
               l.pathname.slice(0, -1) + decoded + l.hash
           );
         }
+        // Handle redirect parameter for SEO-friendly routing
+        else if (l.search.includes('redirect=')) {
+          var params = new URLSearchParams(l.search);
+          var redirect = params.get('redirect');
+          if (redirect) {
+            window.history.replaceState(null, null, decodeURIComponent(redirect));
+          }
+        }
       }(window.location))
     </script>
     <!-- Importmap eliminado: las dependencias se empaquetan en el bundle generado por Vite -->
