@@ -1,76 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="/logo1.png" type="image/png">
-    <title>CONTRATISTAS GENERALES PERU SAC – Servicios Generales</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Importmap eliminado: las dependencias se empaquetan en el bundle generado por Vite -->
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-P2QX664F');</script>
-<!-- End Google Tag Manager -->
-  <script type="module" crossorigin src="/assets/index-CwFaYq5I.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CCLCQIkz.css">
-</head>
-<body data-rsssl="1">
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2QX664F"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <div id="root"></div>
-  <script>
-    // Handle GitHub Pages SPA redirects
-    (function(){
-      var redirect = sessionStorage.redirect;
-      delete sessionStorage.redirect;
-      if (redirect && redirect !== window.location.href) {
-        window.history.replaceState(null, null, redirect);
-      }
-    })();
-  </script>
-  
-<script>
-  (function(){
-    try {
-      var attempted = window.location.href;
-      if (!sessionStorage.getItem('redirect') || sessionStorage.getItem('redirect') !== attempted) {
-        sessionStorage.setItem('redirect', attempted);
-      }
-    } catch(e){}
-    try { window.location.replace('/'); } catch(e) { window.location.href = '/'; }
-  })();
-</script>
-</body>
-  <script>
-    // Runtime error reporter: shows uncaught errors and unhandled rejections in the page
-    (function(){
-      function show(msg){
-        try{
-          var el=document.createElement('pre');
-          el.style.position='fixed';
-          el.style.left=0;
-          el.style.right=0;
-          el.style.top=0;
-          el.style.background='white';
-          el.style.color='black';
-          el.style.zIndex=999999;
-          el.style.padding='12px';
-          el.style.maxHeight='50vh';
-          el.style.overflow='auto';
-          el.textContent=msg;
-          document.body.appendChild(el);
-        }catch(e){console.error('Error reporter failed',e)}
-      }
-      window.addEventListener('error', function(e){ show('Error: '+(e.error&&e.error.message?e.error.message:e.message||e.toString())); });
-      window.addEventListener('unhandledrejection', function(e){ show('Unhandled rejection: '+(e.reason&&e.reason.message?e.reason.message:JSON.stringify(e.reason))); });
-    })();
-  </script>
-  </html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirigiendo…</title>
+    <script>
+      // When GitHub Pages serves this 404 for an SPA route, fetch the SPA's index.html
+      // and inline it into the document while keeping the original URL. This allows
+      // BrowserRouter (history API) to read the pathname and render the correct page
+      // without switching to hash-based routes.
+      (function () {
+        try {
+          var parts = window.location.pathname.split('/');
+          var host = window.location.hostname || '';
+          // On custom domains (congen.com.pe) use root '/' as base. On github.io project pages
+          // the repo name is the first path segment (user.github.io/repo). Detect that by host.
+          var repoBase = '/';
+          if (/\.github\.io$/.test(host)) {
+            if (parts.length > 1 && parts[1]) {
+              repoBase = '/' + parts[1] + '/';
+            }
+          }
+          var requested = window.location.pathname + window.location.search + window.location.hash;
+          // If we computed a repoBase and the requested path starts with it, strip it for the fetch target
+          if (repoBase !== '/' && requested.indexOf(repoBase) === 0) {
+            requested = requested.slice(repoBase.length);
+          }
+          var indexUrl = repoBase + 'index.html';
+
+          // Fetch the deployed index.html and write it into the current document.
+          // After writing, restore the original URL in the address bar so the SPA
+          // sees the correct pathname.
+          fetch(indexUrl, {cache: 'no-store'}).then(function (response) {
+            if (!response.ok) {
+              // If fetching fails, fallback to repo root
+              window.location.replace(repoBase);
+              return null;
+            }
+            return response.text();
+          }).then(function (html) {
+            if (!html) return;
+            document.open();
+            document.write(html);
+            document.close();
+            try {
+              // Restore the original requested URL so the SPA router can match it
+              history.replaceState(null, '', requested);
+            } catch (e) {
+              // If replaceState fails, try a conservative replace to repo base
+              window.location.replace(repoBase);
+            }
+          }).catch(function () {
+            window.location.replace(repoBase);
+          });
+        } catch (e) {
+          // Fallback: send to repo root (best-effort)
+          var parts = window.location.pathname.split('/');
+          var repoBase = parts.length > 1 && parts[1] ? '/' + parts[1] + '/' : '/';
+          window.location.replace(repoBase);
+        }
+      })();
+    </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-P2QX664F');</script>
+  <!-- End Google Tag Manager -->
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2QX664F" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <p>Redirigiendo... <span id="home-link">Volver al inicio</span></p>
+    <script>
+      // Provide a normal link as a fallback while the fetch runs.
+      (function(){
+        var parts = window.location.pathname.split('/');
+        var host = window.location.hostname || '';
+        var repoBase = '/';
+        if (/\.github\.io$/.test(host)) {
+          if (parts.length > 1 && parts[1]) {
+            repoBase = '/' + parts[1] + '/';
+          }
+        }
+        var a = document.createElement('a');
+        a.href = repoBase;
+        a.textContent = 'Volver al inicio';
+        var span = document.getElementById('home-link');
+        if(span) span.parentNode.replaceChild(a, span);
+      })();
+    </script>
+  </body>
+</html>

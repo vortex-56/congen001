@@ -1,8 +1,0 @@
-# GitHub Pages redirects for clean URLs
-/vidrios/    /vidrios    301
-/vidrios.html    /vidrios    301
-/andamios/    /andamios    301
-/andamios.html    /andamios    301
-
-# SPA fallback - all other routes should go to index.html for React Router to handle
-/*    /index.html    200
