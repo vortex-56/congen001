@@ -13,6 +13,26 @@
       // without switching to hash-based routes.
       (function () {
         try {
+          var pathname = window.location.pathname;
+          var search = window.location.search;
+          var hash = window.location.hash;
+          
+          // Check if this is a bot/crawler
+          var isBot = /bot|crawler|spider|crawling/i.test(navigator.userAgent);
+          
+          // For specific routes, serve static HTML to bots but redirect users to SPA
+          if (pathname === '/vidrios' || pathname === '/andamios') {
+            if (isBot) {
+              // Redirect bots to static HTML files
+              window.location.replace(pathname + '.html');
+              return;
+            }
+            // For users, redirect to SPA with proper routing
+            window.location.replace('/?redirect=' + encodeURIComponent(pathname + search + hash));
+            return;
+          }
+          
+          // Default SPA redirect behavior for other routes
           var parts = window.location.pathname.split('/');
           var host = window.location.hostname || '';
           // On custom domains (congen.com.pe) use root '/' as base. On github.io project pages
@@ -23,7 +43,7 @@
               repoBase = '/' + parts[1] + '/';
             }
           }
-          var requested = window.location.pathname + window.location.search + window.location.hash;
+          var requested = pathname + search + hash;
           // If we computed a repoBase and the requested path starts with it, strip it for the fetch target
           if (repoBase !== '/' && requested.indexOf(repoBase) === 0) {
             requested = requested.slice(repoBase.length);
