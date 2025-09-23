@@ -11,8 +11,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Single Page Apps for GitHub Pages -->
     <script type="text/javascript">
-      // Check for redirected query string from 404.html
+      // Handle redirects from 404.html for GitHub Pages SPA routing
       (function(l) {
+        // Legacy support for old redirect format
         if (l.search[1] === '/' ) {
           var decoded = l.search.slice(1).split('&').map(function(s) { 
             return s.replace(/~and~/g, '&')
@@ -21,7 +22,16 @@
               l.pathname.slice(0, -1) + decoded + l.hash
           );
         }
-        // Handle redirect parameter for SEO-friendly routing
+        // Handle new spa_redirect parameter for direct URL access
+        else if (l.search.includes('spa_redirect=')) {
+          var params = new URLSearchParams(l.search);
+          var redirect = params.get('spa_redirect');
+          if (redirect) {
+            // Restore the original URL immediately
+            window.history.replaceState(null, null, decodeURIComponent(redirect));
+          }
+        }
+        // Handle legacy redirect parameter for SEO-friendly routing
         else if (l.search.includes('redirect=')) {
           var params = new URLSearchParams(l.search);
           var redirect = params.get('redirect');
