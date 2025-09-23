@@ -3,9 +3,9 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
     return {
-  // Use the repository name as base for GitHub Pages
-  // This ensures assets load correctly when deployed to username.github.io/repo
-  base: '/congen001/',
+  // Use root path for custom domain (congen.com.pe)
+  // Changed from '/congen001/' to '/' for custom domain deployment
+  base: '/',
       resolve: {
         alias: {
           '@': path.resolve(__dirname, '.'),
