@@ -13,6 +13,14 @@
     <script type="text/javascript">
       // Handle redirects from 404.html for GitHub Pages SPA routing
       (function(l) {
+        // Check for pending route from sessionStorage (new method)
+        var pendingRoute = sessionStorage.getItem('pendingRoute');
+        if (pendingRoute) {
+          sessionStorage.removeItem('pendingRoute');
+          window.history.replaceState(null, null, pendingRoute);
+          return;
+        }
+        
         // Legacy support for old redirect format
         if (l.search[1] === '/' ) {
           var decoded = l.search.slice(1).split('&').map(function(s) { 

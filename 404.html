@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Redirigiendo…</title>
     <script>
-      // Simplified SPA redirect for GitHub Pages
+      // Simple and direct SPA redirect for GitHub Pages
       (function () {
         try {
           var pathname = window.location.pathname;
@@ -24,10 +24,10 @@
               window.location.replace(pathname + '.html');
               return;
             }
-            // For users, use simple redirect to homepage with current path intact
-            // This preserves the URL for React Router to handle
-            var fullUrl = pathname + search + hash;
-            window.location.replace('/' + '?spa_redirect=' + encodeURIComponent(fullUrl));
+            
+            // For users, redirect to homepage and then use JavaScript to navigate
+            sessionStorage.setItem('pendingRoute', pathname + search + hash);
+            window.location.replace('/');
             return;
           }
           
