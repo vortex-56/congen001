@@ -3,8 +3,8 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
     return {
-  // Use relative paths for GitHub Pages deployment
-  base: './',
+  // Use root path for custom domain deployment
+  base: '/',
       resolve: {
         alias: {
           '@': path.resolve(__dirname, '.'),

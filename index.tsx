@@ -12,8 +12,8 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    {/* Use BrowserRouter with Vite base so routes are clean (404.html will redirect unknown paths to the SPA) */}
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    {/* Use BrowserRouter without basename for custom domain deployment */}
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </React.StrictMode>
