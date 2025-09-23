@@ -7,33 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Redirigiendo…</title>
     <script>
-      // Simple and direct SPA redirect for GitHub Pages
+      // Simple 404 redirect - only for truly missing pages
+      // Do NOT intercept /vidrios and /andamios - they have real files now!
       (function () {
         try {
-          var pathname = window.location.pathname;
-          var search = window.location.search;
-          var hash = window.location.hash;
-          
-          // Check if this is a bot/crawler
-          var isBot = /bot|crawler|spider|crawling/i.test(navigator.userAgent);
-          
-          // For specific routes, serve static HTML to bots but redirect users to SPA
-          if (pathname === '/vidrios' || pathname === '/andamios') {
-            if (isBot) {
-              // Redirect bots to static HTML files
-              window.location.replace(pathname + '.html');
-              return;
-            }
-            
-            // For users, redirect to homepage and then use JavaScript to navigate
-            sessionStorage.setItem('pendingRoute', pathname + search + hash);
-            window.location.replace('/');
-            return;
-          }
-          
-          // For other routes, simple redirect to homepage
+          // For any missing page, redirect to homepage
           window.location.replace('/');
-          return;
         } catch (e) {
           // Fallback: redirect to homepage
           window.location.replace('/');
