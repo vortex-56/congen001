@@ -3,8 +3,8 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
     return {
-  // Use repository name as base for GitHub Pages, but support custom domain
-  base: process.env.NODE_ENV === 'production' ? '/congen001/' : '/',
+  // Use root path for custom domain, GitHub Pages handles repo routing automatically
+  base: '/',
       resolve: {
         alias: {
           '@': path.resolve(__dirname, '.'),

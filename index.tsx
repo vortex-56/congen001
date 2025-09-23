@@ -11,21 +11,10 @@ if (!rootElement) {
 
 const root = ReactDOM.createRoot(rootElement);
 
-// Get base path for routing - handle both GitHub Pages and custom domain
-const getBasePath = () => {
-  const hostname = window.location.hostname;
-  // If on GitHub Pages subdomain, use repo name as base
-  if (hostname.includes('github.io')) {
-    return '/congen001';
-  }
-  // If on custom domain, use root
-  return '';
-};
-
 root.render(
   <React.StrictMode>
-    {/* Use BrowserRouter with dynamic basename for both GitHub Pages and custom domain */}
-    <BrowserRouter basename={getBasePath()}>
+    {/* Use BrowserRouter without basename for custom domain - GitHub Pages with CNAME handles routing */}
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </React.StrictMode>
