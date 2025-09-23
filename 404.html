@@ -7,15 +7,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Redirigiendo…</title>
     <script>
-      // Simple 404 redirect - only for truly missing pages
-      // Do NOT intercept /vidrios and /andamios - they have real files now!
+      // When GitHub Pages serves this 404 for an SPA route, fetch the SPA's index.html
+      // and inline it into the document while keeping the original URL. This allows
+      // BrowserRouter (history API) to read the pathname and render the correct page
+      // without switching to hash-based routes.
       (function () {
         try {
-          // For any missing page, redirect to homepage
-          window.location.replace('/');
+          var parts = window.location.pathname.split('/');
+          var host = window.location.hostname || '';
+          // On custom domains (congen.com.pe) use root '/' as base. On github.io project pages
+          // the repo name is the first path segment (user.github.io/repo). Detect that by host.
+          var repoBase = '/';
+          if (/\.github\.io$/.test(host)) {
+            if (parts.length > 1 && parts[1]) {
+              repoBase = '/' + parts[1] + '/';
+            }
+          }
+          var requested = window.location.pathname + window.location.search + window.location.hash;
+          // If we computed a repoBase and the requested path starts with it, strip it for the fetch target
+          if (repoBase !== '/' && requested.indexOf(repoBase) === 0) {
+            requested = requested.slice(repoBase.length);
+          }
+          var indexUrl = repoBase + 'index.html';
+
+          // Fetch the deployed index.html and write it into the current document.
+          // After writing, restore the original URL in the address bar so the SPA
+          // sees the correct pathname.
+          fetch(indexUrl, {cache: 'no-store'}).then(function (response) {
+            if (!response.ok) {
+              // If fetching fails, fallback to repo root
+              window.location.replace(repoBase);
+              return null;
+            }
+            return response.text();
+          }).then(function (html) {
+            if (!html) return;
+            document.open();
+            document.write(html);
+            document.close();
+            try {
+              // Restore the original requested URL so the SPA router can match it
+              history.replaceState(null, '', requested);
+            } catch (e) {
+              // If replaceState fails, try a conservative replace to repo base
+              window.location.replace(repoBase);
+            }
+          }).catch(function () {
+            window.location.replace(repoBase);
+          });
         } catch (e) {
-          // Fallback: redirect to homepage
-          window.location.replace('/');
+          // Fallback: send to repo root (best-effort)
+          var parts = window.location.pathname.split('/');
+          var repoBase = parts.length > 1 && parts[1] ? '/' + parts[1] + '/' : '/';
+          window.location.replace(repoBase);
         }
       })();
     </script>
