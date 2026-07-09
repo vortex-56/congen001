@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 
@@ -13,9 +13,9 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
-    {/* Use BrowserRouter without basename for custom domain - GitHub Pages with CNAME handles routing */}
-    <BrowserRouter>
+    {/* HashRouter: las rutas con # (/#/vidrios, /#/andamios) funcionan en GitHub Pages sin configurar rewrites en el servidor */}
+    <HashRouter>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );

@@ -385,33 +385,33 @@ const Footer: React.FC = () => {
                         <p>Urb. Ricardo Palma, Mz F Lt 14, SJL</p>
                     </div>
                     <div className="flex justify-center md:justify-start gap-4 mt-4">
-                        <a href="#"><img alt="Facebook" className="w-5 h-5 transition-transform hover:scale-110" src={`${base}red-face.svg`} /></a>
-                        <a href="#"><img alt="Instagram" className="w-5 h-5 transition-transform hover:scale-110" src={`${base}red-insta.svg`} /></a>
-                        <a href="#"><img alt="TikTok" className="w-5 h-5 transition-transform hover:scale-110" src={`${base}red-tik.svg`} /></a>
+                        <img alt="Facebook" className="w-5 h-5" src={`${base}red-face.svg`} />
+                        <img alt="Instagram" className="w-5 h-5" src={`${base}red-insta.svg`} />
+                        <img alt="TikTok" className="w-5 h-5" src={`${base}red-tik.svg`} />
                     </div>
                 </div>
                 <div className="flex flex-col md:flex-row gap-8 md:gap-16 text-center md:text-left md:relative md:-left-16">
                     <div>
                         <h4 className="font-bold text-sm mb-3 uppercase">Servicios</h4>
                         <ul className="space-y-2 text-xs">
-                            <li><a href="#" className="hover:underline opacity-80 hover:opacity-100">– Carpintería de Vidrio y Aluminio</a></li>
-                            <li><a href="#" className="hover:underline opacity-80 hover:opacity-100">– Tabiquería y Enchapado</a></li>
-                            <li><a href="#" className="hover:underline opacity-80 hover:opacity-100">– Alquiler y Venta de Andamios</a></li>
-                            <li><a href="#" className="hover:underline opacity-80 hover:opacity-100">– Mantenimientos</a></li>
-                            <li><a href="#" className="hover:underline opacity-80 hover:opacity-100">– Pintados</a></li>
-                            <li><a href="#" className="hover:underline opacity-80 hover:opacity-100">– Limpieza de Vidrios</a></li>
-                            <li><a href="#" className="hover:underline opacity-80 hover:opacity-100">– Pulido y Biselado</a></li>
-                            <li><a href="#" className="hover:underline opacity-80 hover:opacity-100">– Arenado</a></li>
+                            <li className="opacity-80">– Carpintería de Vidrio y Aluminio</li>
+                            <li className="opacity-80">– Tabiquería y Enchapado</li>
+                            <li className="opacity-80">– Alquiler y Venta de Andamios</li>
+                            <li className="opacity-80">– Mantenimientos</li>
+                            <li className="opacity-80">– Pintados</li>
+                            <li className="opacity-80">– Limpieza de Vidrios</li>
+                            <li className="opacity-80">– Pulido y Biselado</li>
+                            <li className="opacity-80">– Arenado</li>
                         </ul>
                     </div>
                     <div>
                         <h4 className="font-bold text-sm mb-3 uppercase">Productos</h4>
                         <ul className="space-y-2 text-xs">
-                            <li><a href="#" className="hover:underline opacity-80 hover:opacity-100">– Vidrios</a></li>
-                            <li><a href="#" className="hover:underline opacity-80 hover:opacity-100">– Mobiliarios</a></li>
-                            <li><a href="#" className="hover:underline opacity-80 hover:opacity-100">– Accesorios</a></li>
-                            <li><a href="#" className="hover:underline opacity-80 hover:opacity-100">– Tabiquería y Enchapados</a></li>
-                            <li><a href="#" className="hover:underline opacity-80 hover:opacity-100">– Andamios</a></li>
+                            <li className="opacity-80">– Vidrios</li>
+                            <li className="opacity-80">– Mobiliarios</li>
+                            <li className="opacity-80">– Accesorios</li>
+                            <li className="opacity-80">– Tabiquería y Enchapados</li>
+                            <li className="opacity-80">– Andamios</li>
                         </ul>
                     </div>
                 </div>
