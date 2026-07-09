@@ -1,0 +1,26 @@
+{
+  "name": "congen-home",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "homepage": "https://congen.com.pe",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "gh-pages": "^6.3.0",
+    "lucide-react": "^0.546.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "react-router-dom": "^7.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "typescript": "^5.9.2",
+    "vite": "^6.2.0"
+  }
+}
