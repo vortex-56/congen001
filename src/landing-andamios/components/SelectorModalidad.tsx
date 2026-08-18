@@ -22,6 +22,23 @@ export default function SelectorModalidad({
   const [visibleCount, setVisibleCount] = useState(4);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [isSectionVisible, setIsSectionVisible] = useState(false);
+  const sectionRef = React.useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsSectionVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px' }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const galleryImages = [
     { url: 'https://raw.githubusercontent.com/vortex-56/congenitem/main/c001.webp', title: 'Andamio de Trabajo en Obra' },
@@ -204,7 +221,7 @@ export default function SelectorModalidad({
   ];
 
   return (
-    <section id="venta-alquiler" className="py-16 sm:py-20 bg-[#1c998d] text-white border-b border-[#168076] relative overflow-hidden">
+    <section ref={sectionRef} id="venta-alquiler" className="py-16 sm:py-20 bg-[#1c998d] text-white border-b border-[#168076] relative overflow-hidden">
       
       {/* Background subtle overlay */}
       <div className="absolute inset-0 bg-[#0d252e]/10 pointer-events-none"></div>
@@ -219,7 +236,7 @@ export default function SelectorModalidad({
           <h2 className="font-display font-black text-3xl sm:text-4xl text-white mt-4 tracking-tight drop-shadow-sm">
             ¿Buscas Alquiler Temporal o Compra de Flotas?
           </h2>
-          <p className="font-sans text-teal-50 mt-3 text-base">
+          <p className="font-sans text-white mt-3 text-base">
             En CONGEN PERÚ nos adaptamos al tamaño y presupuesto de tu obra. Selecciona la modalidad para ver tus beneficios preferenciales:
           </p>
         </div>
@@ -246,16 +263,18 @@ export default function SelectorModalidad({
                     className="bg-gray-100 rounded-xl overflow-hidden border border-white/30 relative group aspect-square flex flex-col justify-end shadow-md cursor-pointer hover:border-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl"
                   >
                     {/* Image */}
-                    <img 
-                      src={img.url} 
-                      alt={img.title || `Andamio Congen ${idx + 1}`} 
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      decoding="async"
-                      width="300"
-                      height="300"
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
+                    {isSectionVisible && (
+                      <img 
+                        src={img.url} 
+                        alt={img.title || `Andamio Congen ${idx + 1}`} 
+                        referrerPolicy="no-referrer"
+                        loading="lazy"
+                        decoding="async"
+                        width="300"
+                        height="300"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    )}
 
                     {/* Hover Overlay with Zoom Icon */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3">
@@ -298,11 +317,15 @@ export default function SelectorModalidad({
               <button
                 key={i}
                 onClick={() => setCurrentIndex(i)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  currentIndex === i ? 'w-6 bg-white' : 'w-1.5 bg-white/40 hover:bg-white/70'
-                }`}
+                className="p-2.5 -m-1.5 flex items-center justify-center cursor-pointer"
                 aria-label={`Ir a diapositiva ${i + 1}`}
-              />
+              >
+                <span
+                  className={`h-1.5 rounded-full transition-all duration-300 block ${
+                    currentIndex === i ? 'w-6 bg-white' : 'w-1.5 bg-white/40 hover:bg-white/70'
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </div>
@@ -420,8 +443,8 @@ export default function SelectorModalidad({
                 <Calendar className="w-4 h-4" />
                 <span>Alquiler de Andamios</span>
               </div>
-              <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono ${
-                activeModalidad === 'alquiler' ? 'bg-[#1c998d]/15 text-[#1c998d]' : 'bg-white/10 text-white'
+              <span className={`text-[10px] px-2 py-0.5 rounded font-mono font-bold ${
+                activeModalidad === 'alquiler' ? 'bg-[#0d252e] text-white' : 'bg-white/20 text-white'
               }`}>
                 Más Solicitado
               </span>
@@ -438,8 +461,8 @@ export default function SelectorModalidad({
                 <TrendingUp className="w-4 h-4" />
                 <span>Compra de Andamios</span>
               </div>
-              <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono ${
-                activeModalidad === 'venta' ? 'bg-black/20 text-white' : 'bg-white/10 text-white'
+              <span className={`text-[10px] px-2 py-0.5 rounded font-mono font-bold ${
+                activeModalidad === 'venta' ? 'bg-black/40 text-white' : 'bg-white/20 text-white'
               }`}>
                 Precio Fábrica
               </span>
@@ -515,13 +538,17 @@ export default function SelectorModalidad({
                 <button
                   key={i}
                   onClick={() => setBenefitIndex(i)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    benefitIndex === i 
-                      ? 'w-6 bg-white'
-                      : 'w-1.5 bg-white/40 hover:bg-white/70'
-                  }`}
+                  className="p-2.5 -m-1.5 flex items-center justify-center cursor-pointer"
                   aria-label={`Ir al beneficio ${i + 1}`}
-                />
+                >
+                  <span
+                    className={`h-1.5 rounded-full transition-all duration-300 block ${
+                      benefitIndex === i 
+                        ? 'w-6 bg-white'
+                        : 'w-1.5 bg-white/40 hover:bg-white/70'
+                    }`}
+                  />
+                </button>
               ))}
             </div>
           </div>

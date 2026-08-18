@@ -9,6 +9,23 @@ import { ShieldCheck, HardHat, Check, Award, Eye, FileCheck, ChevronLeft, Chevro
 export default function SeguridadNormativa() {
   const [isMobile, setIsMobile] = useState(false);
   const [certIndex, setCertIndex] = useState(0);
+  const [isSectionVisible, setIsSectionVisible] = useState(false);
+  const sectionRef = React.useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsSectionVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px' }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const certifications = [
     {
@@ -59,7 +76,7 @@ export default function SeguridadNormativa() {
   }, [isMobile, certIndex]);
 
   return (
-    <section id="seguridad" className="py-24 bg-white border-b border-gray-100">
+    <section ref={sectionRef} id="seguridad" className="py-24 bg-white border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main layout grid */}
@@ -84,16 +101,18 @@ export default function SeguridadNormativa() {
 
                 {/* Horizontal Image of Worker */}
                 <div className="w-full h-36 sm:h-44 rounded-2xl overflow-hidden border border-white/25 shadow-lg relative group bg-black/10">
-                  <img
-                    src="https://raw.githubusercontent.com/vortex-56/congenitem/main/b1.webp"
-                    alt="Trabajador de seguridad en andamio CONGEN PERÚ"
-                    loading="lazy"
-                    decoding="async"
-                    width="480"
-                    height="180"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
+                  {isSectionVisible && (
+                    <img
+                      src="https://raw.githubusercontent.com/vortex-56/congenitem/main/b1.webp"
+                      alt="Trabajador de seguridad en andamio CONGEN PERÚ"
+                      loading="lazy"
+                      decoding="async"
+                      width="480"
+                      height="180"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      referrerPolicy="no-referrer"
+                    />
+                  )}
                 </div>
 
                 {/* Title & Description */}
@@ -101,7 +120,7 @@ export default function SeguridadNormativa() {
                   <h3 className="font-display font-black text-xl sm:text-2xl text-white tracking-tight">
                     Cero Accidentes, Máxima Estabilidad
                   </h3>
-                  <p className="font-sans text-xs sm:text-sm text-teal-50/90 leading-relaxed">
+                  <p className="font-sans text-xs sm:text-sm text-white leading-relaxed">
                     Un andamio colapsado destruye reputaciones y detiene proyectos. En CONGEN PERÚ nos tomamos la seguridad personal muy en serio. Todos nuestros componentes pasan por ensayos de compresión estática severos.
                   </p>
                 </div>
@@ -109,12 +128,12 @@ export default function SeguridadNormativa() {
                 {/* Micro metrics */}
                 <div className="grid grid-cols-2 gap-3 pt-3 border-t border-white/20">
                   <div className="space-y-0.5">
-                    <span className="font-mono font-black text-xl sm:text-2xl text-white block">250 <span className="text-xs font-bold text-teal-100">kg/m²</span></span>
-                    <span className="text-[10px] sm:text-[11px] text-teal-100 font-medium">Carga de trabajo útil</span>
+                    <span className="font-mono font-black text-xl sm:text-2xl text-white block">250 <span className="text-xs font-bold text-white">kg/m²</span></span>
+                    <span className="text-[10px] sm:text-[11px] text-white font-medium">Carga de trabajo útil</span>
                   </div>
                   <div className="space-y-0.5">
                     <span className="font-mono font-black text-xl sm:text-2xl text-white block">3:1</span>
-                    <span className="text-[10px] sm:text-[11px] text-teal-100 font-medium">Factor de seguridad estructural</span>
+                    <span className="text-[10px] sm:text-[11px] text-white font-medium">Factor de seguridad estructural</span>
                   </div>
                 </div>
 
@@ -158,10 +177,10 @@ export default function SeguridadNormativa() {
                             <Check className="w-4 h-4" />
                           </div>
                           <div className="space-y-1.5">
-                            <h4 className="font-display font-extrabold text-sm text-gray-900 group-hover:text-[#099899] transition-colors">
+                            <h3 className="font-display font-extrabold text-sm text-gray-900 group-hover:text-[#099899] transition-colors">
                               {cert.title}
-                            </h4>
-                            <p className="font-sans text-xs text-gray-500 leading-relaxed">
+                            </h3>
+                            <p className="font-sans text-xs text-gray-600 leading-relaxed">
                               {cert.desc}
                             </p>
                           </div>
@@ -193,11 +212,15 @@ export default function SeguridadNormativa() {
                     <button
                       key={i}
                       onClick={() => setCertIndex(i)}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${
-                        certIndex === i ? 'w-6 bg-[#099899]' : 'w-1.5 bg-gray-300 hover:bg-gray-400'
-                      }`}
+                      className="p-2.5 -m-1.5 flex items-center justify-center cursor-pointer"
                       aria-label={`Ir al aspecto ${i + 1}`}
-                    />
+                    >
+                      <span
+                        className={`h-1.5 rounded-full transition-all duration-300 block ${
+                          certIndex === i ? 'w-6 bg-[#099899]' : 'w-1.5 bg-gray-300 hover:bg-gray-400'
+                        }`}
+                      />
+                    </button>
                   ))}
                 </div>
               </div>
@@ -212,10 +235,10 @@ export default function SeguridadNormativa() {
                       <Check className="w-4 h-4" />
                     </div>
                     <div className="space-y-1.5">
-                      <h4 className="font-display font-extrabold text-sm text-gray-900 group-hover:text-[#099899] transition-colors">
+                      <h3 className="font-display font-extrabold text-sm text-gray-900 group-hover:text-[#099899] transition-colors">
                         {cert.title}
-                      </h4>
-                      <p className="font-sans text-xs text-gray-500 leading-relaxed">
+                      </h3>
+                      <p className="font-sans text-xs text-gray-600 leading-relaxed">
                         {cert.desc}
                       </p>
                     </div>
@@ -231,8 +254,8 @@ export default function SeguridadNormativa() {
                   <FileCheck className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-sm text-gray-900">Fichas Técnicas Oficiales</h4>
-                  <p className="text-xs text-gray-500">Documento PDF descargable con ensayos mecánicos</p>
+                  <h3 className="font-display font-bold text-sm text-gray-900">Fichas Técnicas Oficiales</h3>
+                  <p className="text-xs text-gray-600">Documento PDF descargable con ensayos mecánicos</p>
                 </div>
               </div>
               <button

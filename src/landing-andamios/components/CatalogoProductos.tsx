@@ -34,9 +34,25 @@ export default function CatalogoProductos({ onAddToCart, cart }: CatalogoProduct
   const [startX, setStartX] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
   
-  // Auto-play control state
   const [isPaused, setIsPaused] = useState(false);
   const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isSectionVisible, setIsSectionVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsSectionVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px' }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   // Responsive items count calculation
   useEffect(() => {
@@ -287,7 +303,7 @@ export default function CatalogoProductos({ onAddToCart, cart }: CatalogoProduct
   const percentageShift = currentIndex * (100 / displayProducts.length);
 
   return (
-    <section id="componentes" className="py-16 sm:py-20 bg-white border-b border-gray-100">
+    <section ref={sectionRef} id="componentes" className="py-16 sm:py-20 bg-white border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* SECTION HEADER */}
@@ -337,11 +353,15 @@ export default function CatalogoProductos({ onAddToCart, cart }: CatalogoProduct
                     pauseTemporarily();
                     setCurrentIndex(idx);
                   }}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    currentIndex === idx ? 'w-6 bg-[#991824]' : 'w-2 bg-gray-200 hover:bg-gray-400'
-                  }`}
+                  className="p-2.5 -m-1.5 flex items-center justify-center cursor-pointer"
                   aria-label={`Ir a la posición ${idx + 1}`}
-                />
+                >
+                  <span
+                    className={`h-2 rounded-full transition-all duration-300 block ${
+                      currentIndex === idx ? 'w-6 bg-[#991824]' : 'w-2 bg-gray-200 hover:bg-gray-400'
+                    }`}
+                  />
+                </button>
               ))}
             </div>
 
@@ -405,7 +425,7 @@ export default function CatalogoProductos({ onAddToCart, cart }: CatalogoProduct
 
                         {/* Product Image */}
                         <div className="w-full h-full flex items-center justify-center p-2">
-                          {product.imageUrl ? (
+                          {isSectionVisible && product.imageUrl ? (
                             <img
                               src={product.imageUrl}
                               alt={product.name}
@@ -426,10 +446,10 @@ export default function CatalogoProductos({ onAddToCart, cart }: CatalogoProduct
 
                       {/* Info & Title */}
                       <div>
-                        <h4 className="font-display font-bold text-base text-gray-900 tracking-tight leading-snug" title={product.name}>
+                        <h3 className="font-display font-bold text-base text-gray-900 tracking-tight leading-snug" title={product.name}>
                           {product.name}
-                        </h4>
-                        <p className="font-sans text-xs text-gray-500 mt-1.5 leading-relaxed">
+                        </h3>
+                        <p className="font-sans text-xs text-gray-600 mt-1.5 leading-relaxed">
                           {product.description}
                         </p>
                       </div>
@@ -438,7 +458,7 @@ export default function CatalogoProductos({ onAddToCart, cart }: CatalogoProduct
                       <div className="bg-slate-50/80 p-2.5 rounded-lg border border-slate-100 text-[11px] font-sans text-gray-600 space-y-1">
                         {Object.entries(product.specifications).slice(0, 4).map(([k, v]) => (
                           <div key={k} className="flex justify-between items-center gap-2">
-                            <span className="font-medium text-gray-400 truncate">{k}:</span>
+                            <span className="font-semibold text-gray-700 truncate">{k}:</span>
                             <span className="font-mono font-semibold text-gray-800 shrink-0">{v}</span>
                           </div>
                         ))}
@@ -453,7 +473,7 @@ export default function CatalogoProductos({ onAddToCart, cart }: CatalogoProduct
         </div>
 
         {/* Footer Hint */}
-        <p className="text-center text-xs text-gray-400 mt-4 font-sans">
+        <p className="text-center text-xs text-gray-600 mt-4 font-sans">
           💡 Puedes arrastrar con el mouse o dedo en móviles para deslizarte por la vitrina de componentes.
         </p>
 

@@ -189,13 +189,17 @@ export default function Hero({ onScrollToSection, onOpenWhatsApp }: HeroProps) {
                   <button
                     key={index}
                     onClick={() => setCurrentSlide(index)}
-                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                      index === currentSlide
-                        ? 'w-6 bg-white'
-                        : 'w-2 bg-white/50 hover:bg-white'
-                    }`}
+                    className="p-2 -m-1 flex items-center justify-center cursor-pointer"
                     aria-label={`Ir a la imagen ${index + 1}`}
-                  />
+                  >
+                    <span
+                      className={`h-2 rounded-full transition-all duration-300 block ${
+                        index === currentSlide
+                          ? 'w-6 bg-white'
+                          : 'w-2 bg-white/50 hover:bg-white'
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
             </div>

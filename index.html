@@ -11,11 +11,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
 
-    <!-- Optimized Google Fonts with display=swap -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Karla:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
     <!-- Preload LCP Hero Image for Landing Andamios Acrow -->
     <link rel="preload" as="image" href="https://raw.githubusercontent.com/vortex-56/congenitem/main/q1.webp" fetchpriority="high">
+
+    <!-- Non-blocking Google Fonts with display=swap -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Karla:wght@400;600;700;800&family=Montserrat:wght@700;800;900&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Karla:wght@400;600;700;800&family=Montserrat:wght@700;800;900&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Karla:wght@400;600;700;800&family=Montserrat:wght@700;800;900&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+    </noscript>
 
     <!-- Single Page Apps for GitHub Pages -->
     <script type="text/javascript">
@@ -40,23 +44,33 @@
       }(window.location))
     </script>
 
-    <!-- Google Tag Manager (Optimized non-blocking) -->
+    <!-- Google Tag Manager (Deferred to idle / user interaction for maximum PageSpeed) -->
     <script>
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({'gtm.start': new Date().getTime(), event:'gtm.js'});
       (function() {
+        var gtmLoaded = false;
         function loadGTM() {
+          if (gtmLoaded) return;
+          gtmLoaded = true;
           var f = document.getElementsByTagName('script')[0];
           var j = document.createElement('script');
           j.async = true;
           j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-P2QX664F';
           f.parentNode.insertBefore(j, f);
         }
-        if (document.readyState === 'complete') {
-          loadGTM();
+        
+        // Load on first user interaction or when browser is idle
+        if ('requestIdleCallback' in window) {
+          window.addEventListener('load', function() {
+            requestIdleCallback(function() { setTimeout(loadGTM, 1500); }, { timeout: 3500 });
+          }, { once: true });
         } else {
-          window.addEventListener('load', loadGTM, { once: true });
+          window.addEventListener('load', function() { setTimeout(loadGTM, 2000); }, { once: true });
         }
+        ['scroll', 'touchstart', 'mousemove', 'click'].forEach(function(ev) {
+          window.addEventListener(ev, loadGTM, { once: true, passive: true });
+        });
       })();
     </script>
     <!-- End Google Tag Manager -->

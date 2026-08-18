@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { Trash2, HelpCircle, Package, Plus, Minus, CheckCircle, RefreshCw, ChevronDown } from 'lucide-react';
+import { Trash2, HelpCircle, Package, Plus, Minus, CheckCircle, RefreshCw, ChevronDown, Layers, Hammer } from 'lucide-react';
 import { QuoteCartItem, ComponentItem } from '../types';
 import { PRODUCTS } from '../data/products';
 
@@ -196,30 +196,23 @@ export default function FormularioCotizacion({
                         }`}
                       >
                         <div className="flex items-center gap-2 min-w-0 flex-1">
-                          {product.imageUrl && (
-                            <div className="w-7 h-7 bg-slate-50 border border-slate-200 rounded-md p-0.5 shrink-0 flex items-center justify-center overflow-hidden">
-                              <img
-                                src={product.imageUrl}
-                                alt={product.name}
-                                loading="lazy"
-                                decoding="async"
-                                width="28"
-                                height="28"
-                                className="max-h-full max-w-full object-contain"
-                                referrerPolicy="no-referrer"
-                              />
-                            </div>
-                          )}
+                          <div className="w-7 h-7 bg-slate-50 border border-slate-200 rounded-md shrink-0 flex items-center justify-center">
+                            {product.category === 'cuerpo' ? (
+                              <Layers className="w-3.5 h-3.5 text-[#991824]" />
+                            ) : (
+                              <Hammer className="w-3.5 h-3.5 text-[#1c998d]" />
+                            )}
+                          </div>
                           <div className="min-w-0 flex-1 leading-tight">
                             <div className="flex items-center gap-1">
-                              <h4 className={`font-display font-bold text-[11px] sm:text-xs truncate ${isSelected ? 'text-gray-900' : 'text-gray-700'}`} title={product.name}>
+                              <h3 className={`font-display font-bold text-[11px] sm:text-xs truncate ${isSelected ? 'text-gray-900' : 'text-gray-700'}`} title={product.name}>
                                 {product.name}
-                              </h4>
+                              </h3>
                               {isSelected && (
                                 <CheckCircle className="w-3 h-3 text-[#991824] shrink-0" />
                               )}
                             </div>
-                            <p className="font-mono text-[9px] sm:text-[10px] text-gray-400">
+                            <p className="font-mono text-[9px] sm:text-[10px] text-gray-600">
                               {product.weightKg} kg/u {isSelected ? `• Subtotal: ${itemWeight.toFixed(1)} kg` : ''}
                             </p>
                           </div>
@@ -357,7 +350,7 @@ export default function FormularioCotizacion({
                   <span>Enviar Cotización por WhatsApp</span>
                 </button>
 
-                <div className="flex items-center justify-center gap-4 text-[10px] text-gray-400 font-medium pt-1">
+                <div className="flex items-center justify-center gap-4 text-[10px] text-gray-600 font-semibold pt-1">
                   <span className="flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
                     Atención inmediata
