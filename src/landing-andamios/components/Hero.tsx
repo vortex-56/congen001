@@ -19,20 +19,41 @@ const HERO_IMAGES = [
 
 export default function Hero({ onScrollToSection, onOpenWhatsApp }: HeroProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [loadedSlides, setLoadedSlides] = useState<number[]>([0]);
+
+  useEffect(() => {
+    // Pre-load remaining slides after initial render idle
+    const timeout = setTimeout(() => {
+      setLoadedSlides([0, 1, 2]);
+    }, 2500);
+    return () => clearTimeout(timeout);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % HERO_IMAGES.length);
+      setCurrentSlide((prev) => {
+        const next = (prev + 1) % HERO_IMAGES.length;
+        setLoadedSlides((current) => current.includes(next) ? current : [...current, next]);
+        return next;
+      });
     }, 4000);
     return () => clearInterval(timer);
   }, []);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % HERO_IMAGES.length);
+    setCurrentSlide((prev) => {
+      const next = (prev + 1) % HERO_IMAGES.length;
+      setLoadedSlides((current) => current.includes(next) ? current : [...current, next]);
+      return next;
+    });
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + HERO_IMAGES.length) % HERO_IMAGES.length);
+    setCurrentSlide((prev) => {
+      const prevIndex = (prev - 1 + HERO_IMAGES.length) % HERO_IMAGES.length;
+      setLoadedSlides((current) => current.includes(prevIndex) ? current : [...current, prevIndex]);
+      return prevIndex;
+    });
   };
 
   const handleWhatsAppClick = () => {
@@ -132,24 +153,27 @@ export default function Hero({ onScrollToSection, onOpenWhatsApp }: HeroProps) {
             <div className="relative w-full max-w-[600px] h-full min-h-[480px] sm:min-h-[580px] lg:min-h-[640px] flex items-center justify-center overflow-hidden group">
               
               {/* Carousel Images */}
-              {HERO_IMAGES.map((imgUrl, index) => (
-                <img
-                  key={imgUrl}
-                  src={imgUrl}
-                  alt={`Andamio Acrow CONGEN PERÚ ${index + 1}`}
-                  referrerPolicy="no-referrer"
-                  fetchPriority={index === 0 ? "high" : "low"}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  decoding={index === 0 ? "sync" : "async"}
-                  width="600"
-                  height="640"
-                  className={`absolute inset-0 w-full h-full object-cover object-top scale-120 transition-opacity duration-700 ease-in-out ${
-                    index === currentSlide
-                      ? 'opacity-100 z-10'
-                      : 'opacity-0 z-0 pointer-events-none'
-                  }`}
-                />
-              ))}
+              {HERO_IMAGES.map((imgUrl, index) => {
+                if (!loadedSlides.includes(index)) return null;
+                return (
+                  <img
+                    key={imgUrl}
+                    src={imgUrl}
+                    alt={`Andamio Acrow CONGEN PERÚ ${index + 1}`}
+                    referrerPolicy="no-referrer"
+                    fetchPriority={index === 0 ? "high" : "low"}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    decoding={index === 0 ? "sync" : "async"}
+                    width="600"
+                    height="640"
+                    className={`absolute inset-0 w-full h-full object-cover object-top scale-120 transition-opacity duration-700 ease-in-out ${
+                      index === currentSlide
+                        ? 'opacity-100 z-10'
+                        : 'opacity-0 z-0 pointer-events-none'
+                    }`}
+                  />
+                );
+              })}
 
               {/* Prev / Next Navigation Arrows */}
               <button

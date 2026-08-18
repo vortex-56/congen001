@@ -1,20 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
-import Productos from './pages/Productos';
-import Servicios from './pages/Servicios';
-import Vidrios from './pages/Vidrios';
-import Andamios from './pages/Andamios';
-import Gracias from './pages/Gracias';
-import GraciasAndamios from './pages/GraciasAndamios';
-import GraciasVidrios from './pages/GraciasVidrios';
-import AndamiosAcrow from './pages/AndamiosAcrow';
+
+const Hero = lazy(() => import('./components/Hero'));
+const About = lazy(() => import('./components/About'));
+const Projects = lazy(() => import('./components/Projects'));
+const Contact = lazy(() => import('./components/Contact'));
+const Productos = lazy(() => import('./pages/Productos'));
+const Servicios = lazy(() => import('./pages/Servicios'));
+const Vidrios = lazy(() => import('./pages/Vidrios'));
+const Andamios = lazy(() => import('./pages/Andamios'));
+const Gracias = lazy(() => import('./pages/Gracias'));
+const GraciasAndamios = lazy(() => import('./pages/GraciasAndamios'));
+const GraciasVidrios = lazy(() => import('./pages/GraciasVidrios'));
+const AndamiosAcrow = lazy(() => import('./pages/AndamiosAcrow'));
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -42,24 +43,26 @@ const App: React.FC = () => {
     <div className="flex flex-col min-h-screen">
       {!isLandingPage && <Header />}
       <main className="flex-grow">
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Hero />
-              <About />
-              <Projects />
-              <Contact />
-            </>
-          } />
-          <Route path="/productos" element={<Productos />} />
-          <Route path="/servicios" element={<Servicios />} />
-          <Route path="/vidrios" element={<Vidrios />} />
-          <Route path="/andamios" element={<Andamios />} />
-          <Route path="/andamios-acrow" element={<AndamiosAcrow />} />
-          <Route path="/gracias" element={<Gracias />} />
-          <Route path="/gracias-andamios" element={<GraciasAndamios />} />
-          <Route path="/gracias-vidrios" element={<GraciasVidrios />} />
-        </Routes>
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Hero />
+                <About />
+                <Projects />
+                <Contact />
+              </>
+            } />
+            <Route path="/productos" element={<Productos />} />
+            <Route path="/servicios" element={<Servicios />} />
+            <Route path="/vidrios" element={<Vidrios />} />
+            <Route path="/andamios" element={<Andamios />} />
+            <Route path="/andamios-acrow" element={<AndamiosAcrow />} />
+            <Route path="/gracias" element={<Gracias />} />
+            <Route path="/gracias-andamios" element={<GraciasAndamios />} />
+            <Route path="/gracias-vidrios" element={<GraciasVidrios />} />
+          </Routes>
+        </Suspense>
       </main>
       {!isLandingPage && <Footer />}
   {/* Show FloatingWhatsApp on the homepage root */}
