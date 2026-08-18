@@ -250,6 +250,10 @@ export default function SelectorModalidad({
                       src={img.url} 
                       alt={img.title || `Andamio Congen ${idx + 1}`} 
                       referrerPolicy="no-referrer"
+                      loading="lazy"
+                      decoding="async"
+                      width="300"
+                      height="300"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
 

@@ -1,5 +1,18 @@
-/* Fuentes de la landing andamios-acrow (deben ir al inicio) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Karla", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Montserrat", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-brand-green: #099899;
+  --color-brand-green-hover: #077c7d;
+  --color-brand-red: #991824;
+  --color-brand-red-hover: #80121d;
+  --color-brand-dark: #171717;
+  --color-brand-dark-hover: #262626;
+}
 
 /* Ajuste de portada: baja info de contacto, redes y botón 'Saber más sobre nosotros' solo en escritorio */
 @media (min-width: 1024px) {

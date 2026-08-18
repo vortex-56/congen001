@@ -39,6 +39,9 @@ export default function Navbar({ cart, onOpenCart, onScrollToSection }: NavbarPr
             <img 
               src="https://congen.com.pe/logo3.svg" 
               alt="CONGEN PERÚ Logo" 
+              width="160"
+              height="36"
+              decoding="async"
               className="h-7 sm:h-8 lg:h-9 w-auto object-contain transition-opacity drop-shadow-sm transform scale-[1.95]"
               referrerPolicy="no-referrer"
             />
@@ -53,6 +56,9 @@ export default function Navbar({ cart, onOpenCart, onScrollToSection }: NavbarPr
             <img 
               src="https://congen.com.pe/logo-simbolo.svg" 
               alt="CONGEN PERÚ Símbolo" 
+              width="20"
+              height="20"
+              decoding="async"
               className="w-5 h-5 object-contain drop-shadow-sm transform scale-[1.3]"
               referrerPolicy="no-referrer"
             />

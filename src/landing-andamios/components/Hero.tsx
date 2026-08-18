@@ -138,6 +138,11 @@ export default function Hero({ onScrollToSection, onOpenWhatsApp }: HeroProps) {
                   src={imgUrl}
                   alt={`Andamio Acrow CONGEN PERÚ ${index + 1}`}
                   referrerPolicy="no-referrer"
+                  fetchPriority={index === 0 ? "high" : "low"}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  decoding={index === 0 ? "sync" : "async"}
+                  width="600"
+                  height="640"
                   className={`absolute inset-0 w-full h-full object-cover object-top scale-120 transition-opacity duration-700 ease-in-out ${
                     index === currentSlide
                       ? 'opacity-100 z-10'

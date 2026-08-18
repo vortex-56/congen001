@@ -409,6 +409,10 @@ export default function CatalogoProductos({ onAddToCart, cart }: CatalogoProduct
                             <img
                               src={product.imageUrl}
                               alt={product.name}
+                              loading="lazy"
+                              decoding="async"
+                              width="240"
+                              height="180"
                               className="max-h-full max-w-full object-contain rounded-lg drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
                               referrerPolicy="no-referrer"
                             />

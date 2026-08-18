@@ -201,6 +201,10 @@ export default function FormularioCotizacion({
                               <img
                                 src={product.imageUrl}
                                 alt={product.name}
+                                loading="lazy"
+                                decoding="async"
+                                width="28"
+                                height="28"
                                 className="max-h-full max-w-full object-contain"
                                 referrerPolicy="no-referrer"
                               />

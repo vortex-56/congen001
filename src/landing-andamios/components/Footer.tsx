@@ -30,6 +30,10 @@ export default function Footer({ onScrollToSection }: FooterProps) {
               <img 
                 src="https://congen.com.pe/logo-simbolo.svg" 
                 alt="CONGEN PERÚ Símbolo" 
+                loading="lazy"
+                decoding="async"
+                width="48"
+                height="48"
                 className="h-12 w-auto object-contain hover:opacity-90 transition-opacity bg-white/5 p-2 rounded-lg border border-white/10"
                 referrerPolicy="no-referrer"
               />

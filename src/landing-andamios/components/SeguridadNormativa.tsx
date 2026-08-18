@@ -87,6 +87,10 @@ export default function SeguridadNormativa() {
                   <img
                     src="https://raw.githubusercontent.com/vortex-56/congenitem/main/b1.webp"
                     alt="Trabajador de seguridad en andamio CONGEN PERÚ"
+                    loading="lazy"
+                    decoding="async"
+                    width="480"
+                    height="180"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
