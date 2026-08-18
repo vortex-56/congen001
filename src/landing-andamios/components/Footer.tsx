@@ -5,9 +5,10 @@
 
 import React from 'react';
 import { Mail, Phone, MapPin, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Modalidad } from '../types';
 
 interface FooterProps {
-  onScrollToSection: (id: string) => void;
+  onScrollToSection: (id: string, modalidad?: Modalidad) => void;
 }
 
 export default function Footer({ onScrollToSection }: FooterProps) {
@@ -28,7 +29,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
             <div className="flex items-center cursor-pointer" onClick={() => onScrollToSection('inicio')}>
               <img 
                 src="https://congen.com.pe/logo-simbolo.svg" 
-                alt="CONGEN S.A.C. Símbolo" 
+                alt="CONGEN PERÚ Símbolo" 
                 className="h-12 w-auto object-contain hover:opacity-90 transition-opacity bg-white/5 p-2 rounded-lg border border-white/10"
                 referrerPolicy="no-referrer"
               />
@@ -48,25 +49,22 @@ export default function Footer({ onScrollToSection }: FooterProps) {
           <div className="md:col-span-3 space-y-4">
             <h4 className="font-display font-black text-xs text-white uppercase tracking-widest">Navegación</h4>
             <ul className="space-y-2.5 text-xs">
-              {['Inicio', 'Venta y Alquiler', 'Componentes', 'Calculadora', 'Seguridad'].map((item) => {
-                const idMap: Record<string, string> = {
-                  'Inicio': 'inicio',
-                  'Venta y Alquiler': 'venta-alquiler',
-                  'Componentes': 'componentes',
-                  'Calculadora': 'calculadora',
-                  'Seguridad': 'seguridad'
-                };
-                return (
-                  <li key={item}>
-                    <button
-                      onClick={() => onScrollToSection(idMap[item])}
-                      className="text-neutral-400 hover:text-[#991824] transition-colors cursor-pointer"
-                    >
-                      {item}
-                    </button>
-                  </li>
-                );
-              })}
+              {[
+                { label: 'Inicio', id: 'inicio' },
+                { label: 'Venta de Andamios', id: 'venta', modalidad: 'venta' as Modalidad },
+                { label: 'Alquiler de Andamios', id: 'alquiler', modalidad: 'alquiler' as Modalidad },
+                { label: 'Componentes', id: 'componentes' },
+                { label: 'Seguridad', id: 'seguridad' }
+              ].map((item) => (
+                <li key={item.label}>
+                  <button
+                    onClick={() => onScrollToSection(item.id, item.modalidad)}
+                    className="text-neutral-400 hover:text-[#991824] transition-colors cursor-pointer"
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 

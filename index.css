@@ -1,5 +1,5 @@
 /* Fuentes de la landing andamios-acrow (deben ir al inicio) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* Ajuste de portada: baja info de contacto, redes y botón 'Saber más sobre nosotros' solo en escritorio */
 @media (min-width: 1024px) {
@@ -89,6 +89,10 @@ body {
   font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
 }
 
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .font-mono {
   font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 }
@@ -102,6 +106,9 @@ body {
 .px-4\.5 { padding-left: 1.125rem; padding-right: 1.125rem; }
 .gap-4\.5 { gap: 1.125rem; }
 .space-y-4\.5 > * + * { margin-top: 1.125rem; }
+.scale-120 { transform: scale(1.2); }
+.shadow-xs { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+.backdrop-blur-xs { backdrop-filter: blur(2px); }
 
 @keyframes fadeIn {
   from { opacity: 0; }

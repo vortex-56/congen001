@@ -8,7 +8,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import SelectorModalidad from './components/SelectorModalidad';
 import CatalogoProductos from './components/CatalogoProductos';
-import CalculadoraAndamios from './components/CalculadoraAndamios';
 import SeguridadNormativa from './components/SeguridadNormativa';
 import FormularioCotizacion from './components/FormularioCotizacion';
 import Footer from './components/Footer';
@@ -21,24 +20,46 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [activeModalidad, setActiveModalidad] = useState<Modalidad>('alquiler');
 
-  // Offset smooth scrolling helper to account for sticky navbar
-  const handleScrollToSection = (id: string) => {
-    const element = document.getElementById(id);
+  // Smooth scrolling helper with modality support
+  const handleScrollToSection = (id: string, modalidad?: Modalidad) => {
+    if (modalidad) {
+      setActiveModalidad(modalidad);
+    } else if (id === 'venta') {
+      setActiveModalidad('venta');
+    } else if (id === 'alquiler') {
+      setActiveModalidad('alquiler');
+    }
+
+    // Determine target DOM element ID
+    let targetId = id;
+    if (id === 'cotizar' || id === 'formulario') {
+      targetId = 'cotizar';
+    } else if (id === 'venta' || id === 'alquiler') {
+      targetId = 'venta-alquiler';
+    }
+
+    const element = document.getElementById(targetId);
     if (element) {
-      const headerOffset = 80; // height of navbar
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      
+      let offsetPosition = elementPosition + window.pageYOffset;
+
+      // On desktop, when scrolling to cotizar / formulario, scroll down extra
+      // so there isn't excess blank space at top and the WhatsApp send button fits in viewport
+      if (id === 'cotizar' || id === 'formulario') {
+        const isDesktop = window.innerWidth >= 1024;
+        offsetPosition += isDesktop ? 100 : 35;
+      }
+
       window.scrollTo({
-        top: offsetPosition,
+        top: Math.max(0, offsetPosition),
         behavior: 'smooth'
       });
     }
   };
 
   const handleOpenWhatsApp = (customMessage?: string) => {
-    const basePhone = '51914109040'; // Target Peruvian WhatsApp Number for CONGEN S.A.C.
-    const defaultText = 'Hola CONGEN S.A.C., vi su página web de andamios Acrow y deseo solicitar una cotización.';
+    const basePhone = '51914109040'; // Target Peruvian WhatsApp Number for CONGEN PERÚ
+    const defaultText = 'Hola CONGEN PERÚ, vi su página web de andamios Acrow y deseo solicitar una cotización.';
     const encodedText = encodeURIComponent(customMessage || defaultText);
     const whatsappUrl = `https://api.whatsapp.com/send?phone=${basePhone}&text=${encodedText}`;
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
@@ -125,12 +146,6 @@ export default function App() {
         <CatalogoProductos
           cart={cart}
           onAddToCart={handleAddToCart}
-        />
-
-        {/* INTEGRATED SCAFFOLD STRUCTURAL CALCULATOR */}
-        <CalculadoraAndamios
-          onAddConfigurationToCart={handleAddConfigurationToCart}
-          onScrollToSection={handleScrollToSection}
         />
 
         {/* SAFETY AND CERTIFICATIONS SEGMENT */}

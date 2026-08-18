@@ -13,7 +13,7 @@ export default function SeguridadNormativa() {
   const certifications = [
     {
       title: 'Espesor Real Homologado (2.0mm)',
-      desc: 'No arriesgues a tu personal. Frente a opciones informales de 1.5mm o menos, CONGEN garantiza tuberías estructurales ASTM de 2.0mm de espesor real que soportan cargas verticales extremas sin deflexión.'
+      desc: 'No arriesgues a tu personal. Frente a opciones informales de 1.5mm o menos, CONGEN PERÚ garantiza tuberías estructurales ASTM de 2.0mm de espesor real que soportan cargas verticales extremas sin deflexión.'
     },
     {
       title: 'Soldadura MIG de Penetración',
@@ -67,41 +67,56 @@ export default function SeguridadNormativa() {
           
           {/* LEFT COLUMN: VISUAL TRUST / INFOGRAPH */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-gradient-to-br from-[#099899]/5 to-[#099899]/10 rounded-3xl p-8 border border-[#099899]/15 shadow-sm relative overflow-hidden">
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#099899]/10 rounded-full filter blur-xl"></div>
+            <div className="bg-[#1c998d] text-white rounded-3xl p-5 sm:p-6 border border-[#1c998d] shadow-xl relative overflow-hidden">
+              {/* Subtle background glow */}
+              <div className="absolute -top-12 -right-12 w-44 h-44 bg-white/10 rounded-full filter blur-xl"></div>
               
-              <div className="relative z-10 space-y-5">
-                <div className="bg-[#099899] text-white p-3.5 rounded-2xl w-fit shadow-md">
-                  <ShieldCheck className="w-8 h-8" />
-                </div>
-
-                <div className="space-y-2">
-                  <span className="font-mono text-xs font-bold text-[#099899] uppercase tracking-widest bg-[#099899]/10 px-2.5 py-1 rounded">
+              <div className="relative z-10 space-y-4 text-left">
+                {/* Header Badge */}
+                <div className="flex items-center justify-between gap-2">
+                  <div className="bg-white/15 backdrop-blur-md text-white px-2.5 py-1 rounded-full shadow-inner border border-white/20 flex items-center justify-center">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <span className="font-mono text-xs font-bold text-white bg-white/20 backdrop-blur-md px-3 py-1 rounded-full uppercase tracking-wider border border-white/25 inline-flex items-center">
                     SEGURIDAD SIN CONCESIONES
                   </span>
-                  <h3 className="font-display font-black text-2xl sm:text-3xl text-gray-900 tracking-tight">
+                </div>
+
+                {/* Horizontal Image of Worker */}
+                <div className="w-full h-36 sm:h-44 rounded-2xl overflow-hidden border border-white/25 shadow-lg relative group bg-black/10">
+                  <img
+                    src="https://raw.githubusercontent.com/vortex-56/congenitem/main/b1.webp"
+                    alt="Trabajador de seguridad en andamio CONGEN PERÚ"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+
+                {/* Title & Description */}
+                <div className="space-y-1.5">
+                  <h3 className="font-display font-black text-xl sm:text-2xl text-white tracking-tight">
                     Cero Accidentes, Máxima Estabilidad
                   </h3>
-                  <p className="font-sans text-sm text-gray-600 leading-relaxed">
-                    Un andamio colapsado destruye reputaciones y detiene proyectos. En CONGEN S.A.C. nos tomamos la seguridad personal muy en serio. Todos nuestros componentes pasan por ensayos de compresión estática severos.
+                  <p className="font-sans text-xs sm:text-sm text-teal-50/90 leading-relaxed">
+                    Un andamio colapsado destruye reputaciones y detiene proyectos. En CONGEN PERÚ nos tomamos la seguridad personal muy en serio. Todos nuestros componentes pasan por ensayos de compresión estática severos.
                   </p>
                 </div>
 
                 {/* Micro metrics */}
-                <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#099899]/20">
-                  <div className="space-y-1">
-                    <span className="font-mono font-black text-2xl text-[#099899] block">250 <span className="text-sm font-bold">kg/m²</span></span>
-                    <span className="text-[11px] text-gray-500 font-medium">Carga de trabajo útil</span>
+                <div className="grid grid-cols-2 gap-3 pt-3 border-t border-white/20">
+                  <div className="space-y-0.5">
+                    <span className="font-mono font-black text-xl sm:text-2xl text-white block">250 <span className="text-xs font-bold text-teal-100">kg/m²</span></span>
+                    <span className="text-[10px] sm:text-[11px] text-teal-100 font-medium">Carga de trabajo útil</span>
                   </div>
-                  <div className="space-y-1">
-                    <span className="font-mono font-black text-2xl text-[#099899] block">3:1</span>
-                    <span className="text-[11px] text-gray-500 font-medium">Factor de seguridad estructural</span>
+                  <div className="space-y-0.5">
+                    <span className="font-mono font-black text-xl sm:text-2xl text-white block">3:1</span>
+                    <span className="text-[10px] sm:text-[11px] text-teal-100 font-medium">Factor de seguridad estructural</span>
                   </div>
                 </div>
 
                 {/* Inspector Quote banner */}
-                <div className="bg-white/80 p-4 rounded-xl border border-[#099899]/20 flex items-center space-x-3.5 text-xs text-slate-800 font-medium leading-relaxed">
-                  <HardHat className="w-5 h-5 text-[#099899] shrink-0" />
+                <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/20 flex items-center space-x-3 text-xs text-white font-medium leading-relaxed">
+                  <HardHat className="w-5 h-5 text-amber-300 shrink-0" />
                   <span>Apto para auditorías de seguridad en obras de gran escala y minería nacional.</span>
                 </div>
               </div>
@@ -115,7 +130,7 @@ export default function SeguridadNormativa() {
                 Control de Calidad
               </span>
               <h2 className="font-display font-black text-3xl text-gray-900 mt-4 tracking-tight">
-                ¿Por qué los ingenieros eligen andamios CONGEN?
+                ¿Por qué los ingenieros eligen andamios CONGEN PERÚ?
               </h2>
             </div>
 
@@ -218,7 +233,7 @@ export default function SeguridadNormativa() {
               </div>
               <button
                 onClick={() => {
-                  window.open('https://api.whatsapp.com/send?phone=51914109040&text=Hola%20CONGEN%20S.A.C.,%20solicito%20las%20fichas%20t%C3%A9cnicas%20y%20certificados%20de%20los%20andamios%20Acrow.', '_blank');
+                  window.open('https://api.whatsapp.com/send?phone=51914109040&text=Hola%20CONGEN%20PER%C3%9A,%20solicito%20las%20fichas%20t%C3%A9cnicas%20y%20certificados%20de%20los%20andamios%20Acrow.', '_blank');
                 }}
                 className="w-full sm:w-auto bg-[#171717] hover:bg-[#262626] border border-white/10 text-white font-display font-semibold text-xs tracking-wide py-3 px-5 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer shadow"
               >

@@ -3,73 +3,95 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
-import { Phone, CheckCircle, ArrowDown, FileText, ShieldCheck } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Phone, CheckCircle, ArrowDown, FileText, ShieldCheck, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface HeroProps {
   onScrollToSection: (id: string) => void;
   onOpenWhatsApp: (message?: string) => void;
 }
 
+const HERO_IMAGES = [
+  'https://raw.githubusercontent.com/vortex-56/congenitem/main/q1.webp',
+  'https://raw.githubusercontent.com/vortex-56/congenitem/main/q2.webp',
+  'https://raw.githubusercontent.com/vortex-56/congenitem/main/q3.webp',
+];
+
 export default function Hero({ onScrollToSection, onOpenWhatsApp }: HeroProps) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % HERO_IMAGES.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + HERO_IMAGES.length) % HERO_IMAGES.length);
+  };
+
   const handleWhatsAppClick = () => {
     onOpenWhatsApp(
-      'Hola CONGEN S.A.C., estoy interesado en solicitar una cotización rápida para andamios Acrow.'
+      'Hola CONGEN PERÚ, estoy interesado en solicitar una cotización rápida para andamios Acrow.'
     );
   };
 
   return (
-    <section id="inicio" className="relative pt-28 pb-24 md:pt-36 md:pb-28 overflow-hidden bg-gradient-to-b from-[#1f1f1f] via-[#171717] to-[#0c0c0c] border-b border-white/10">
+    <section id="inicio" className="relative pt-6 sm:pt-8 lg:pt-8 pb-0 overflow-hidden bg-white flex flex-col justify-between">
       
-      {/* Background architectural pattern */}
-      <div className="absolute inset-0 opacity-100 pointer-events-none select-none">
+      {/* Background subtle architectural grid pattern */}
+      <div className="absolute inset-0 opacity-40 pointer-events-none select-none">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="1" strokeOpacity="0.1" />
+            <pattern id="grid-light" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e2e8f0" strokeWidth="1" />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
+          <rect width="100%" height="100%" fill="url(#grid-light)" />
         </svg>
       </div>
 
       {/* Graphic design ambient light effects */}
-      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-white/5 rounded-full filter blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#991824]/10 rounded-full filter blur-[140px] pointer-events-none"></div>
-      <div className="absolute top-[40%] left-[30%] w-[300px] h-[300px] bg-[#099899]/10 rounded-full filter blur-[100px] pointer-events-none"></div>
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#1c998d]/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#991824]/5 rounded-full filter blur-[140px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
           
           {/* LEFT: VALUE PROPOSITION */}
-          <div className="lg:col-span-7 text-center lg:text-left space-y-6">
+          <div className="lg:col-span-7 text-center lg:text-left space-y-6 pt-2 lg:pt-4 pb-6">
             
             {/* Trust badge */}
-            <div className="inline-flex items-center space-x-2 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-white text-xs font-bold uppercase tracking-wider animate-pulse">
-              <ShieldCheck className="w-4 h-4 text-[#099899]" />
-              <span className="text-gray-300">Andamios Normados • CONGEN S.A.C.</span>
+            <div className="inline-flex items-center space-x-2 bg-slate-100 border border-slate-200 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#0d252e]">
+              <ShieldCheck className="w-4 h-4 text-[#1c998d]" />
+              <span className="text-[#0d252e]">Andamios Normados • CONGEN PERÚ</span>
             </div>
 
-            {/* H1 Main SEO Title */}
-            <h1 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white leading-[1.1]">
+            {/* H1 Main SEO Title (VERDE OSCURO #0d252e, ANDAMIOS ACROW EN ROJO #991824) */}
+            <h1 className="font-montserrat font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight text-[#0d252e] leading-[1.1]">
               Alquiler y Venta de <br className="hidden sm:inline" />
-              <span className="text-[#ff4155] drop-shadow-[0_2px_10px_rgba(255,65,85,0.15)]">
+              <span className="text-[#991824] font-black">
                 Andamios Acrow
               </span> <br />
               de Alta Resistencia
             </h1>
 
-            {/* Compelling Subheading */}
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-sans font-light">
+            {/* Subtítulos pequeños de color negro */}
+            <p className="text-base sm:text-lg text-black max-w-2xl mx-auto lg:mx-0 leading-relaxed font-sans font-normal">
               Soluciones seguras, certificadas y normadas para proyectos de construcción civil, minería, mantenimiento industrial y acabados en todo el Perú. 
-              <span className="font-semibold text-white"> Stock permanente con despacho inmediato a obra.</span>
+              <span className="font-bold text-black"> Stock permanente con despacho inmediato a obra.</span>
             </p>
 
             {/* Hero CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
               <button
                 onClick={handleWhatsAppClick}
-                className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-display font-bold text-base tracking-wide shadow-lg hover:shadow-green-600/35 transition-all duration-300 hover:-translate-y-1 cursor-pointer flex items-center justify-center space-x-3"
+                className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-display font-bold text-base tracking-wide shadow-lg hover:shadow-green-600/25 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer flex items-center justify-center space-x-3"
               >
                 {/* Custom WhatsApp Icon */}
                 <svg className="w-5.5 h-5.5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -79,177 +101,67 @@ export default function Hero({ onScrollToSection, onOpenWhatsApp }: HeroProps) {
               </button>
 
               <button
-                onClick={() => onScrollToSection('componentes')}
-                className="w-full sm:w-auto border-2 border-white/20 hover:border-[#099899] hover:bg-[#099899]/10 text-white px-8 py-4 rounded-xl font-display font-bold text-base tracking-wide transition-all duration-300 hover:shadow-md cursor-pointer flex items-center justify-center space-x-2"
+                onClick={() => onScrollToSection('cotizar')}
+                className="w-full sm:w-auto bg-[#1c998d] hover:bg-[#15857b] text-white px-8 py-4 rounded-xl font-display font-bold text-base tracking-wide shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 cursor-pointer flex items-center justify-center space-x-2.5 border border-white/10"
               >
-                <span>Ver Catálogo Técnico</span>
+                <FileText className="w-5 h-5 text-white shrink-0" />
+                <span>Solicitar Cotización</span>
               </button>
             </div>
 
-            {/* Dynamic floating micro-cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 max-w-xl mx-auto lg:mx-0">
-              <div className="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 shadow-sm hover:shadow-md hover:bg-white/10 transition-all flex items-start space-x-3 text-left">
-                <div className="p-2 bg-[#991824]/20 text-[#ff4d5a] rounded-lg">
-                  <span className="font-mono font-bold text-sm">2mm</span>
-                </div>
-                <div>
-                  <h4 className="font-display font-bold text-sm text-white">Espesor Real</h4>
-                  <p className="text-xs text-gray-400">Tubería de alta resistencia estructural</p>
-                </div>
-              </div>
-
-              <div className="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 shadow-sm hover:shadow-md hover:bg-white/10 transition-all flex items-start space-x-3 text-left">
-                <div className="p-2 bg-[#099899]/20 text-[#099899] rounded-lg">
-                  <CheckCircle className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-display font-bold text-sm text-white">Soldadura MIG</h4>
-                  <p className="text-xs text-gray-400">Fusiones perfectas y certificadas</p>
-                </div>
-              </div>
-
-              <div className="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 shadow-sm hover:shadow-md hover:bg-white/10 transition-all flex items-start space-x-3 text-left">
-                <div className="p-2 bg-amber-500/10 text-amber-400 rounded-lg">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-display font-bold text-sm text-white">Despacho Veloz</h4>
-                  <p className="text-xs text-gray-400">Entregas puntuales directo a tu obra</p>
-                </div>
+            {/* BOTÓN DESCUBRIR (EN ROJO, ARRIBA DE LA BARRA VERDE) */}
+            <div className="pt-2 flex justify-center lg:justify-start">
+              <div 
+                onClick={() => onScrollToSection('barra-carrusel')}
+                className="inline-flex flex-col items-center justify-center space-y-0.5 text-[#991824] hover:text-[#7d131d] transition-colors cursor-pointer group py-1"
+              >
+                <span className="font-mono text-[10px] uppercase tracking-widest font-bold text-[#991824]">Descubrir</span>
+                <ArrowDown className="w-4 h-4 animate-bounce text-[#991824] group-hover:translate-y-0.5 transition-transform" />
               </div>
             </div>
 
           </div>
 
-          {/* RIGHT: VECTOR ART (ADVANCED SCAFFOLDING BLUEPRINT) */}
-          <div className="lg:col-span-5 relative flex justify-center">
+          {/* RIGHT: IMAGE CAROUSEL (3 HERO WEBP IMAGES) */}
+          <div className="lg:col-span-5 relative flex justify-center items-end w-full min-h-[480px] sm:min-h-[580px] lg:min-h-[640px] -mt-6 sm:-mt-8 lg:-mt-8">
             
-            {/* Background glowing circle */}
-            <div className="absolute inset-0 bg-[#099899]/10 rounded-full filter blur-xl scale-75 animate-pulse"></div>
+            {/* Background glowing ambient light */}
+            <div className="absolute inset-0 bg-[#1c998d]/10 rounded-full filter blur-2xl scale-90 animate-pulse pointer-events-none"></div>
 
-            {/* Highly customized scaffolding SVG diagram */}
-            <div className="relative bg-[#0a0a0a] border border-white/15 rounded-2xl p-6 shadow-2xl w-full max-w-[420px] aspect-[4/5] flex flex-col justify-between text-white overflow-hidden group">
+            {/* Carousel Container - Flush against top menu bar and bottom green bar, images scaled 20% bigger */}
+            <div className="relative w-full max-w-[600px] h-full min-h-[480px] sm:min-h-[580px] lg:min-h-[640px] flex items-center justify-center overflow-hidden group">
               
-              {/* Grid Lines Overlay */}
-              <div className="absolute inset-0 opacity-[0.15]" style={{
-                backgroundImage: 'radial-gradient(circle, #475569 1px, transparent 1px)',
-                backgroundSize: '16px 16px'
-              }}></div>
+              {/* Carousel Images */}
+              {HERO_IMAGES.map((imgUrl, index) => (
+                <img
+                  key={imgUrl}
+                  src={imgUrl}
+                  alt={`Andamio Acrow CONGEN PERÚ ${index + 1}`}
+                  referrerPolicy="no-referrer"
+                  className={`absolute inset-0 w-full h-full object-cover object-top scale-120 transition-opacity duration-700 ease-in-out ${
+                    index === currentSlide
+                      ? 'opacity-100 z-10'
+                      : 'opacity-0 z-0 pointer-events-none'
+                  }`}
+                />
+              ))}
 
-              {/* Top Banner inside visual */}
-              <div className="relative z-10 flex justify-between items-center pb-4 border-b border-white/10">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#991824] animate-ping"></div>
-                  <span className="font-mono text-[10px] tracking-widest text-slate-400 uppercase">ESQUEMA TÉCNICO ACROW</span>
-                </div>
-                <span className="font-mono text-[9px] text-[#099899] font-bold px-1.5 py-0.5 bg-[#099899]/10 rounded border border-[#099899]/20">MIG CERTIFIED</span>
-              </div>
+              {/* Prev / Next Navigation Arrows */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-2 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-black/40 hover:bg-[#1c998d] text-white backdrop-blur-sm transition-all duration-200 opacity-80 hover:opacity-100 cursor-pointer"
+                aria-label="Imagen anterior"
+              >
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
 
-              {/* Main SVG Scaffold diagram */}
-              <div className="relative z-10 flex-1 flex items-center justify-center py-6">
-                <svg className="w-full max-h-[280px]" viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Ground Line */}
-                  <line x1="10" y1="260" x2="190" y2="260" stroke="#475569" strokeWidth="3" strokeDasharray="3 3" />
-                  
-                  {/* LEVEL 1 GROUND SUPPORT - JACKS */}
-                  <line x1="35" y1="260" x2="35" y2="245" stroke="#991824" strokeWidth="4" />
-                  <line x1="165" y1="260" x2="165" y2="245" stroke="#991824" strokeWidth="4" />
-                  <rect x="25" y="258" width="20" height="3" fill="#991824" />
-                  <rect x="155" y="258" width="20" height="3" fill="#991824" />
-
-                  {/* LEVEL 1 FRAME (Vertical and horizontals) */}
-                  {/* Left frame leg */}
-                  <rect x="33" y="145" width="4" height="100" fill="#991824" rx="1" />
-                  {/* Right frame leg */}
-                  <rect x="163" y="145" width="4" height="100" fill="#991824" rx="1" />
-                  {/* Horizontals */}
-                  <line x1="35" y1="150" x2="165" y2="150" stroke="#991824" strokeWidth="3" />
-                  <line x1="35" y1="240" x2="165" y2="240" stroke="#991824" strokeWidth="2" />
-                  {/* Intermediate reinforcements */}
-                  <line x1="35" y1="180" x2="65" y2="180" stroke="#991824" strokeWidth="2" />
-                  <line x1="135" y1="180" x2="165" y2="180" stroke="#991824" strokeWidth="2" />
-                  <line x1="65" y1="150" x2="65" y2="240" stroke="#991824" strokeWidth="1.5" />
-                  <line x1="135" y1="150" x2="135" y2="240" stroke="#991824" strokeWidth="1.5" />
-
-                  {/* LEVEL 1 SCISSOR (Cruceta) */}
-                  <line x1="35" y1="155" x2="165" y2="235" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" className="group-hover:stroke-red-400 transition-colors" />
-                  <line x1="165" y1="155" x2="35" y2="235" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" className="group-hover:stroke-red-400 transition-colors" />
-                  {/* Center pin connection */}
-                  <circle cx="100" cy="195" r="4.5" fill="#f1f5f9" stroke="#991824" strokeWidth="1.5" />
-
-                  {/* LEVEL 2 FRAME (Vertical and horizontals) */}
-                  {/* Connectors/joints */}
-                  <rect x="32" y="141" width="6" height="8" fill="#099899" rx="0.5" />
-                  <rect x="162" y="141" width="6" height="8" fill="#099899" rx="0.5" />
-                  
-                  {/* Upper Left Frame Leg */}
-                  <rect x="33" y="45" width="4" height="100" fill="#991824" rx="1" />
-                  {/* Upper Right Frame Leg */}
-                  <rect x="163" y="45" width="4" height="100" fill="#991824" rx="1" />
-                  {/* Upper Horizontals */}
-                  <line x1="35" y1="50" x2="165" y2="50" stroke="#991824" strokeWidth="3" />
-                  <line x1="35" y1="140" x2="165" y2="140" stroke="#991824" strokeWidth="2" />
-                  {/* Intermediate reinforcements level 2 */}
-                  <line x1="35" y1="80" x2="65" y2="80" stroke="#991824" strokeWidth="2" />
-                  <line x1="135" y1="80" x2="165" y2="80" stroke="#991824" strokeWidth="2" />
-                  <line x1="65" y1="50" x2="65" y2="140" stroke="#991824" strokeWidth="1.5" />
-                  <line x1="135" y1="50" x2="135" y2="140" stroke="#991824" strokeWidth="1.5" />
-
-                  {/* LEVEL 2 SCISSOR (Cruceta) */}
-                  <line x1="35" y1="55" x2="165" y2="135" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" />
-                  <line x1="165" y1="55" x2="35" y2="135" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" />
-                  {/* Center pin connection */}
-                  <circle cx="100" cy="95" r="4.5" fill="#f1f5f9" stroke="#991824" strokeWidth="1.5" />
-
-                  {/* METAL PLANKS (Tablones) - Highlighted in brand green for safety */}
-                  <rect x="25" y="42" width="150" height="7" fill="#099899" rx="1" className="animate-pulse" />
-                  {/* Detail of plank lines */}
-                  <line x1="30" y1="45" x2="170" y2="45" stroke="#077c7d" strokeWidth="1" strokeDasharray="3 1" />
-
-                  {/* Safety Handrail (Baranda de seguridad) */}
-                  <rect x="33" y="10" width="2" height="35" fill="#f59e0b" />
-                  <rect x="165" y="10" width="2" height="35" fill="#f59e0b" />
-                  <line x1="33" y1="15" x2="167" y2="15" stroke="#f59e0b" strokeWidth="2" />
-                  <line x1="33" y1="28" x2="167" y2="28" stroke="#f59e0b" strokeWidth="1.5" />
-
-                  {/* Dimensions Annotations */}
-                  {/* Vertical Height Annotation */}
-                  <g className="opacity-75">
-                    <line x1="185" y1="45" x2="185" y2="245" stroke="#94a3b8" strokeWidth="0.75" />
-                    <path d="M185 45l-2 4h4l-2-4zM185 245l-2-4h4l-2 4z" fill="#94a3b8" />
-                    <text x="193" y="150" fill="#94a3b8" fontSize="8" fontFamily="monospace" textAnchor="middle" transform="rotate(90,193,150)">4.00 m</text>
-                  </g>
-
-                  {/* Width Annotation */}
-                  <g className="opacity-75">
-                    <line x1="35" y1="272" x2="165" y2="272" stroke="#94a3b8" strokeWidth="0.75" />
-                    <path d="M35 272l4-2v4l-4-2zM165 272l-4-2v4l4-2z" fill="#94a3b8" />
-                    <text x="100" y="280" fill="#94a3b8" fontSize="8" fontFamily="monospace" textAnchor="middle">1.25 m (Ancho)</text>
-                  </g>
-                </svg>
-              </div>
-
-              {/* Lower Technical Specifications Details */}
-              <div className="relative z-10 pt-4 border-t border-white/10 grid grid-cols-2 gap-2 text-[10px] font-mono text-slate-300">
-                <div className="flex items-center space-x-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#991824]"></span>
-                  <span>Acero ASTM A513</span>
-                </div>
-                <div className="flex items-center space-x-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#099899]"></span>
-                  <span>Tablón Carga: 250kg/m²</span>
-                </div>
-                <div className="flex items-center space-x-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                  <span>Nivelador: Ajustable</span>
-                </div>
-                <div className="flex items-center space-x-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
-                  <span>Doble Freno Seg.</span>
-                </div>
-              </div>
+              <button
+                onClick={nextSlide}
+                className="absolute right-2 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-black/40 hover:bg-[#1c998d] text-white backdrop-blur-sm transition-all duration-200 opacity-80 hover:opacity-100 cursor-pointer"
+                aria-label="Siguiente imagen"
+              >
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
 
             </div>
           </div>
@@ -257,10 +169,34 @@ export default function Hero({ onScrollToSection, onOpenWhatsApp }: HeroProps) {
         </div>
       </div>
       
-      {/* Down arrow decorator */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center space-y-1 text-emerald-100/70 hover:text-white transition-colors cursor-pointer" onClick={() => onScrollToSection('venta-alquiler')}>
-        <span className="font-mono text-[9px] uppercase tracking-widest font-semibold">Descubrir</span>
-        <ArrowDown className="w-4 h-4 animate-bounce text-[#099899]" />
+      {/* BARRA INFERIOR NEGRA (90% BLACK) CON NAVEGACIÓN DEL CARRUSEL DEBAJO DE LA IMAGEN */}
+      <div id="barra-carrusel" className="w-full bg-black/90 text-white py-1.5 relative z-30 shadow-inner">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-12 items-center">
+            
+            {/* Spacer for Left Column */}
+            <div className="hidden lg:block lg:col-span-7"></div>
+
+            {/* RIGHT 5 COLS: BARRA DE NAVEGACIÓN DEL CARRUSEL */}
+            <div className="lg:col-span-5 flex justify-center items-center">
+              <div className="flex items-center space-x-2 bg-black/25 px-3 py-1 rounded-full backdrop-blur-md border border-white/20 shadow-sm">
+                {HERO_IMAGES.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      index === currentSlide
+                        ? 'w-6 bg-white'
+                        : 'w-2 bg-white/50 hover:bg-white'
+                    }`}
+                    aria-label={`Ir a la imagen ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
 
     </section>
