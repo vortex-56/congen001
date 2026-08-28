@@ -1,0 +1,1 @@
+import{j as s,F as r}from"./index-CdCkO5eH.js";import a from"./Hero-DNWsH9fO.js";import i from"./Projects-A6fKBXkh.js";import"./ProjectCarousel-8-97jIC8.js";const n=()=>s.jsxs("div",{className:"flex flex-col min-h-screen",children:[s.jsxs("main",{className:"flex-grow",children:[s.jsx(a,{}),s.jsx(i,{})]}),s.jsx(r,{title:"Landing Andamios - Gracias"})]});export{n as default};

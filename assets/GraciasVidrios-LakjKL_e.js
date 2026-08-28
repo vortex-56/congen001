@@ -1,1 +1,0 @@
-import{j as s,F as r}from"./index-IAnUrP4u.js";import i from"./Hero-BOvIitQE.js";import o from"./Projects-CXimCroH.js";import"./ProjectCarousel-C5oEq8v-.js";const l=()=>s.jsxs("div",{className:"flex flex-col min-h-screen",children:[s.jsxs("main",{className:"flex-grow",children:[s.jsx(i,{}),s.jsx(o,{})]}),s.jsx(r,{title:"Landing Vidrios - Gracias"})]});export{l as default};
