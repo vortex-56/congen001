@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirigiendo…</title>
+    <script>
+      // GitHub Pages SPA fallback for HashRouter.
+      // Any deep link without a hash (e.g. /andamios-acrow) is rewritten to its
+      // hash route (/#/andamios-acrow) so HashRouter can render the correct page.
+      (function () {
+        try {
+          var pathname = window.location.pathname;
+          var search = window.location.search;
+          var hash = window.location.hash;
+          // Already a hash route: let the SPA handle it, do nothing.
+          if (hash && hash.length > 1) return;
+          var host = window.location.hostname || '';
+          var repoBase = '/';
+          if (/\.github\.io$/.test(host)) {
+            var parts = pathname.split('/');
+            if (parts.length > 1 && parts[1]) repoBase = '/' + parts[1] + '/';
+          }
+          var route = pathname;
+          if (repoBase !== '/' && route.indexOf(repoBase) === 0) {
+            route = route.slice(repoBase.length);
+          }
+          if (route === '' || route === '/') {
+            window.location.replace(repoBase + '#/');
+          } else {
+            window.location.replace(repoBase + '#' + route + search);
+          }
+        } catch (e) {
+          window.location.replace('/');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirigiendo...</p>
+  </body>
+</html>

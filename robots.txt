@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://congen.com.pe/sitemap.xml
+
+# Important pages for indexing
+Allow: /vidrios
+Allow: /andamios
+Allow: /productos
+Allow: /servicios
+
+# Block assets and API routes
+Disallow: /assets/
+Disallow: /api/
