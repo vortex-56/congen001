@@ -23,6 +23,19 @@ const App: React.FC = () => {
 
   const navigate = useNavigate();
 
+  // Track page views in Google Tag Manager dataLayer on initial load and route change
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'page_view',
+        page_path: location.pathname,
+        page_location: window.location.href,
+        page_title: document.title,
+      });
+    }
+  }, [location.pathname]);
+
   // If a previous navigation requested a scrollTarget (via location.state.scrollTarget),
   // perform the smooth scroll after the route mounts and then replace history state to avoid repeated scrolls.
   useEffect(() => {
